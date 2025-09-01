@@ -1,103 +1,162 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="w-full min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <section className="bg-blue-600 text-white py-16 px-8 text-center flex flex-col items-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Personalized Government Info Portal
+        </h1>
+        <p className="max-w-2xl mb-6">
+          Access personalized government schemes, services, and information tailored to your profile. Stay updated with relevant opportunities and benefits.
+        </p>
+        <div className="flex gap-2 w-full max-w-xl">
+          <Input placeholder="Search for schemes, services, or documents..." />
+          <Button>
+            <Search className="w-4 h-4 mr-2" /> Search
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <div className="mt-6 flex gap-4">
+          <Button variant="secondary">Explore Services</Button>
+          <Button variant="outline" className="text-white border-white">
+            Learn More
+          </Button>
+        </div>
+      </section>
+
+      {/* Statistics */}
+      <section className="bg-gray-100 py-12 px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <h2 className="text-2xl font-bold">1.2M+</h2>
+          <p>Active Users</p>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold">500+</h2>
+          <p>Government Services</p>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold">95%</h2>
+          <p>Success Rate</p>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold">4.8</h2>
+          <p>Rating</p>
+        </div>
+      </section>
+
+      {/* Government Services */}
+      <section className="py-12 px-8">
+        <h2 className="text-3xl font-bold text-center mb-8">Government Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {[ 
+            { name: "Education", count: 25 },
+            { name: "Employment", count: 18 },
+            { name: "Housing", count: 12 },
+            { name: "Healthcare", count: 15 },
+            { name: "Security", count: 8 },
+            { name: "Finance", count: 22 },
+            { name: "Documents", count: 30 }
+          ].map((s) => (
+            <Card key={s.name}>
+              <CardHeader>
+                <CardTitle>{s.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4">{s.count} services available</p>
+                <Button variant="outline">Explore →</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Popular Schemes */}
+      <section className="bg-gray-50 py-12 px-8">
+        <h2 className="text-3xl font-bold text-center mb-8">Popular Government Schemes</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[ 
+            { name: "PM Kisan Samman Nidhi", cat: "Finance", desc: "Direct income support to farmers" },
+            { name: "PM Awas Yojana", cat: "Housing", desc: "Housing for all by 2022" },
+            { name: "Ayushman Bharat", cat: "Healthcare", desc: "Health insurance for poor families" },
+            { name: "PM Fasal Bima Yojana", cat: "Finance", desc: "Crop insurance scheme" },
+            { name: "Skill India Mission", cat: "Employment", desc: "Skill development training" },
+            { name: "Beti Bachao Beti Padhao", cat: "Education", desc: "Girl child education and protection" }
+          ].map((scheme) => (
+            <Card key={scheme.name}>
+              <CardHeader>
+                <CardTitle>{scheme.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-2 text-sm text-gray-600">{scheme.desc}</p>
+                <div className="flex gap-2">
+                  <Button size="sm">Learn More</Button>
+                  <Button size="sm" variant="outline">Check Eligibility</Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Highlights & Features */}
+      <section className="py-12 px-8">
+        <h2 className="text-3xl font-bold text-center mb-8">Highlights of Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {["Schemes", "Exams", "Tax Updates"].map((h) => (
+            <Card key={h}>
+              <CardHeader>
+                <CardTitle>{h}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button variant="outline">Explore →</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <h3 className="text-2xl font-semibold text-center mb-6">Key Features</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {["Personalization", "Alerts", "Document Checklist"].map((f) => (
+            <Card key={f}>
+              <CardHeader>
+                <CardTitle>{f}</CardTitle>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-200 py-12 px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 className="font-bold mb-2">Personalized Government Info Portal</h3>
+          <p className="text-sm">
+            Your one-stop destination for personalized government schemes, services, and information.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-bold mb-2">Quick Links</h3>
+          <ul className="space-y-1 text-sm">
+            <li>Home</li>
+            <li>Services</li>
+            <li>Schemes</li>
+            <li>About Us</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold mb-2">Contact Us</h3>
+          <p className="text-sm">Government Complex, New Delhi, India</p>
+          <p className="text-sm">+91 1800-XXX-XXXX</p>
+          <p className="text-sm">info@pgip.gov.in</p>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
