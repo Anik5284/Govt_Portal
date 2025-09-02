@@ -1,162 +1,105 @@
-"use client";
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import { Search, LogIn, ChevronDown, Rocket } from 'lucide-react';
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-
-export default function Page() {
+const HomePage: NextPage = () => {
   return (
-    <main className="w-full min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-blue-600 text-white py-16 px-8 text-center flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-4">
-          Personalized Government Info Portal
-        </h1>
-        <p className="max-w-2xl mb-6">
-          Access personalized government schemes, services, and information tailored to your profile. Stay updated with relevant opportunities and benefits.
-        </p>
-        <div className="flex gap-2 w-full max-w-xl">
-          <Input placeholder="Search for schemes, services, or documents..." />
-          <Button>
-            <Search className="w-4 h-4 mr-2" /> Search
-          </Button>
-        </div>
-        <div className="mt-6 flex gap-4">
-          <Button variant="secondary">Explore Services</Button>
-          <Button variant="outline" className="text-white border-white">
-            Learn More
-          </Button>
-        </div>
-      </section>
+    <div className="bg-[#0a192f] min-h-screen text-white font-sans">
+      {/* Header / Navbar */}
+      <header className="container mx-auto px-8 py-4">
+        <nav className="flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-500 p-2 rounded-full">
+              <Rocket className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold tracking-wider">PGIP</span>
+          </div>
 
-      {/* Statistics */}
-      <section className="bg-gray-100 py-12 px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <h2 className="text-2xl font-bold">1.2M+</h2>
-          <p>Active Users</p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold">500+</h2>
-          <p>Government Services</p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold">95%</h2>
-          <p>Success Rate</p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold">4.8</h2>
-          <p>Rating</p>
-        </div>
-      </section>
-
-      {/* Government Services */}
-      <section className="py-12 px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Government Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[ 
-            { name: "Education", count: 25 },
-            { name: "Employment", count: 18 },
-            { name: "Housing", count: 12 },
-            { name: "Healthcare", count: 15 },
-            { name: "Security", count: 8 },
-            { name: "Finance", count: 22 },
-            { name: "Documents", count: 30 }
-          ].map((s) => (
-            <Card key={s.name}>
-              <CardHeader>
-                <CardTitle>{s.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">{s.count} services available</p>
-                <Button variant="outline">Explore →</Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Popular Schemes */}
-      <section className="bg-gray-50 py-12 px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Popular Government Schemes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[ 
-            { name: "PM Kisan Samman Nidhi", cat: "Finance", desc: "Direct income support to farmers" },
-            { name: "PM Awas Yojana", cat: "Housing", desc: "Housing for all by 2022" },
-            { name: "Ayushman Bharat", cat: "Healthcare", desc: "Health insurance for poor families" },
-            { name: "PM Fasal Bima Yojana", cat: "Finance", desc: "Crop insurance scheme" },
-            { name: "Skill India Mission", cat: "Employment", desc: "Skill development training" },
-            { name: "Beti Bachao Beti Padhao", cat: "Education", desc: "Girl child education and protection" }
-          ].map((scheme) => (
-            <Card key={scheme.name}>
-              <CardHeader>
-                <CardTitle>{scheme.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-2 text-sm text-gray-600">{scheme.desc}</p>
-                <div className="flex gap-2">
-                  <Button size="sm">Learn More</Button>
-                  <Button size="sm" variant="outline">Check Eligibility</Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Highlights & Features */}
-      <section className="py-12 px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Highlights of Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {["Schemes", "Exams", "Tax Updates"].map((h) => (
-            <Card key={h}>
-              <CardHeader>
-                <CardTitle>{h}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline">Explore →</Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <h3 className="text-2xl font-semibold text-center mb-6">Key Features</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {["Personalization", "Alerts", "Document Checklist"].map((f) => (
-            <Card key={f}>
-              <CardHeader>
-                <CardTitle>{f}</CardTitle>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-200 py-12 px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 className="font-bold mb-2">Personalized Government Info Portal</h3>
-          <p className="text-sm">
-            Your one-stop destination for personalized government schemes, services, and information.
-          </p>
-        </div>
-        <div>
-          <h3 className="font-bold mb-2">Quick Links</h3>
-          <ul className="space-y-1 text-sm">
-            <li>Home</li>
-            <li>Services</li>
-            <li>Schemes</li>
-            <li>About Us</li>
-            <li>Contact</li>
+          {/* Navigation Links */}
+          <ul className="hidden md:flex items-center gap-8 text-gray-300">
+            <li>
+              <a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">
+                Home
+              </a>
+            </li>
+            <li><a href="#" className="hover:text-white transition-colors">Services</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">Statistics</a></li>
+            <li>
+              <a href="#" className="flex items-center gap-1 hover:text-white transition-colors">
+                More <ChevronDown size={16} />
+              </a>
+            </li>
           </ul>
+
+          {/* Search and Login */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search"
+                className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            </div>
+            <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md">
+              <LogIn size={18} />
+              Login
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <main className="container mx-auto px-8 py-20">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <div className="flex flex-col gap-6">
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+              Personalized Government Info Portal
+            </h1>
+            <p className="text-lg text-gray-300">
+              Access personalized government schemes, services, and information tailored to your profile. Stay updated with relevant opportunities and benefits.
+            </p>
+            {/* Main Search Bar */}
+            <div className="relative mt-4">
+              <input
+                type="text"
+                placeholder="Search for schemes, services, or documents..."
+                className="w-full bg-[#1e2a47] border border-gray-600 rounded-full py-4 pl-6 pr-16 text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-3 rounded-full transition-colors">
+                <Search className="w-6 h-6 text-white" />
+              </button>
+            </div>
+            {/* Action Buttons */}
+            <div className="flex items-center gap-4 mt-4">
+              <button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">
+                Explore Services
+              </button>
+              <button className="border-2 border-gray-500 hover:bg-gray-700 hover:border-gray-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="flex justify-center items-center">
+            {/* Replace this with your actual image */}
+            <Image
+              src="/futuristic-tunnel.png" // IMPORTANT: Add your image to the `public` folder
+              alt="Futuristic neon tunnel"
+              width={500}
+              height={500}
+              className="rounded-lg shadow-2xl shadow-blue-500/20"
+              priority
+            />
+          </div>
         </div>
-        <div>
-          <h3 className="font-bold mb-2">Contact Us</h3>
-          <p className="text-sm">Government Complex, New Delhi, India</p>
-          <p className="text-sm">+91 1800-XXX-XXXX</p>
-          <p className="text-sm">info@pgip.gov.in</p>
-        </div>
-      </footer>
-    </main>
+      </main>
+    </div>
   );
-}
+};
+
+export default HomePage;
