@@ -3,56 +3,33 @@ import Image from 'next/image';
 import {
   Search, LogIn, ChevronDown, Rocket, Users, Building, TrendingUp, Star,
   GraduationCap, Briefcase, Home, HeartPulse, ArrowRight, Megaphone,
-  BookOpenCheck, Landmark, UserCheck, Bell, ClipboardCheck
+  BookOpenCheck, Landmark, UserCheck, Bell, ClipboardCheck, Shield,
+  Banknote, FileText, ClipboardList, MapPin, Users as UsersIcon,
+  Facebook, Twitter, Linkedin, Instagram, Phone, Mail, Clock
 } from 'lucide-react';
 
 // Data for the schemes to avoid repeating JSX
 const schemesData = [
-  {
-    title: 'PM Kisan Samman Nidhi',
-    category: 'Finance',
-    priority: 'High Priority',
-    description: 'Direct income support to farmers',
-    eligibility: 'Small and marginal farmers',
-  },
-  {
-    title: 'PM Awas Yojana',
-    category: 'Housing',
-    priority: 'High Priority',
-    description: 'Housing for all by 2022',
-    eligibility: 'Economically weaker sections',
-  },
-  {
-    title: 'Ayushman Bharat',
-    category: 'Healthcare',
-    priority: 'High Priority',
-    description: 'Health insurance for poor families',
-    eligibility: 'Families below poverty line',
-  },
-  {
-    title: 'PM Fasal Bima Yojana',
-    category: 'Finance',
-    priority: 'Medium Priority',
-    description: 'Crop insurance scheme',
-    eligibility: 'All farmers',
-  },
-  {
-    title: 'Skill India Mission',
-    category: 'Employment',
-    priority: 'Medium Priority',
-    description: 'Skill development training',
-    eligibility: 'Youth aged 15-45 years',
-  },
-  {
-    title: 'Beti Bachao Beti Padhao',
-    category: 'Education',
-    priority: 'Medium Priority',
-    description: 'Girl child education and protection',
-    eligibility: 'Families with girl children',
-  },
+  { title: 'PM Kisan Samman Nidhi', category: 'Finance', priority: 'High Priority', description: 'Direct income support to farmers', eligibility: 'Small and marginal farmers' },
+  { title: 'PM Awas Yojana', category: 'Housing', priority: 'High Priority', description: 'Housing for all by 2022', eligibility: 'Economically weaker sections' },
+  { title: 'Ayushman Bharat', category: 'Healthcare', priority: 'High Priority', description: 'Health insurance for poor families', eligibility: 'Families below poverty line' },
+  { title: 'PM Fasal Bima Yojana', category: 'Finance', priority: 'Medium Priority', description: 'Crop insurance scheme', eligibility: 'All farmers' },
+  { title: 'Skill India Mission', category: 'Employment', priority: 'Medium Priority', description: 'Skill development training', eligibility: 'Youth aged 15-45 years' },
+  { title: 'Beti Bachao Beti Padhao', category: 'Education', priority: 'Medium Priority', description: 'Girl child education and protection', eligibility: 'Families with girl children' },
 ];
 
-// Helper to get colors for tags
+// Data for the Government Services section
+const servicesData = [
+  { title: 'Education', description: '25 services available', Icon: GraduationCap, color: 'green' },
+  { title: 'Employment', description: '18 services available', Icon: Briefcase, color: 'blue' },
+  { title: 'Housing', description: '12 services available', Icon: Home, color: 'orange' },
+  { title: 'Healthcare', description: '15 services available', Icon: HeartPulse, color: 'red' },
+  { title: 'Security', description: '8 services available', Icon: Shield, color: 'purple' },
+  { title: 'Finance', description: '22 services available', Icon: Banknote, color: 'teal' },
+  { title: 'Documents', description: '30 services available', Icon: FileText, color: 'indigo' },
+];
+
+// Helper to get colors for scheme tags
 const getTagColors = (text: string) => {
   switch (text.toLowerCase()) {
     case 'finance': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300';
@@ -66,6 +43,20 @@ const getTagColors = (text: string) => {
   }
 };
 
+// Helper to get colors for service cards
+const getServiceCardColors = (color: string) => {
+  const colors: { [key: string]: { bg: string, text: string } } = {
+    green: { bg: 'bg-green-100 dark:bg-green-900/50', text: 'text-green-600 dark:text-green-400' },
+    blue: { bg: 'bg-blue-100 dark:bg-blue-900/50', text: 'text-blue-600 dark:text-blue-400' },
+    orange: { bg: 'bg-orange-100 dark:bg-orange-900/50', text: 'text-orange-600 dark:text-orange-400' },
+    red: { bg: 'bg-red-100 dark:bg-red-900/50', text: 'text-red-600 dark:text-red-400' },
+    purple: { bg: 'bg-purple-100 dark:bg-purple-900/50', text: 'text-purple-600 dark:text-purple-400' },
+    teal: { bg: 'bg-teal-100 dark:bg-teal-900/50', text: 'text-teal-600 dark:text-teal-400' },
+    indigo: { bg: 'bg-indigo-100 dark:bg-indigo-900/50', text: 'text-indigo-600 dark:text-indigo-400' },
+  };
+  return colors[color] || colors['green'];
+};
+
 
 const HomePage: NextPage = () => {
   return (
@@ -76,10 +67,10 @@ const HomePage: NextPage = () => {
           <div className="flex items-center gap-3"><div className="bg-blue-500 p-2 rounded-full"><Rocket className="w-6 h-6 text-white" /></div><span className="text-2xl font-bold tracking-wider">PGIP</span></div>
           <ul className="hidden md:flex items-center gap-8 text-gray-300">
             <li><a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">Home</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Services</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Statistics</a></li>
-            <li><a href="#" className="flex items-center gap-1 hover:text-white transition-colors">More <ChevronDown size={16} /></a></li>
+            <li><a href="#" className="hover:text-white transition-colors">My Profile</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">My Recommendations</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">Timetable</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
           </ul>
           <div className="hidden md:flex items-center gap-4"><div className="relative"><input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" /><Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} /></div><button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md"><LogIn size={18} />Login</button></div>
         </nav>
@@ -94,8 +85,8 @@ const HomePage: NextPage = () => {
           </div>
         </main>
 
-        {/* Statistics Section */}
-        <section className="container mx-auto px-8 py-16">
+        {/* Statistics Row Section */}
+        <section className="container mx-auto px-8 pt-4 pb-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center"><div className="bg-blue-600/20 p-6 rounded-full"><Users className="w-12 h-12 text-blue-400" /></div><h3 className="text-4xl font-bold mt-4">1.2M+</h3><p className="text-gray-400 mt-1">Active Users</p></div>
             <div className="flex flex-col items-center"><div className="bg-green-600/20 p-6 rounded-full"><Building className="w-12 h-12 text-green-400" /></div><h3 className="text-4xl font-bold mt-4">500+</h3><p className="text-gray-400 mt-1">Government Services</p></div>
@@ -105,8 +96,30 @@ const HomePage: NextPage = () => {
         </section>
       </div>
 
-      {/* Light background for the following sections */}
+      {/* Light background sections */}
       <div className="bg-slate-100 dark:bg-slate-900">
+        {/* Government Services Section */}
+        <section className="container mx-auto px-8 py-20">
+          <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Government Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {servicesData.map((service) => {
+              const { bg, text } = getServiceCardColors(service.color);
+              return (
+                <div key={service.title} className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300">
+                  <div className={`${bg} p-4 rounded-full w-fit mb-4`}>
+                    <service.Icon className={`w-8 h-8 ${text}`} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">{service.description}</p>
+                  <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+                    Explore <ArrowRight size={18} />
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
         {/* Popular Government Schemes Section */}
         <section className="container mx-auto px-8 py-20">
           <div className="text-center mb-12">
@@ -133,20 +146,9 @@ const HomePage: NextPage = () => {
             ))}
           </div>
         </section>
-
-        {/* Government Services Section */}
-        <section className="container mx-auto px-8 py-20">
-          <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Government Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300"><div className="bg-green-100 dark:bg-green-900/50 p-4 rounded-full w-fit mb-4"><GraduationCap className="w-8 h-8 text-green-600 dark:text-green-400" /></div><h3 className="text-xl font-semibold text-slate-900 dark:text-white">Education</h3><p className="text-gray-600 dark:text-gray-400 mt-1">25 services available</p><a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">Explore <ArrowRight size={18} /></a></div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300"><div className="bg-blue-100 dark:bg-blue-900/50 p-4 rounded-full w-fit mb-4"><Briefcase className="w-8 h-8 text-blue-600 dark:text-blue-400" /></div><h3 className="text-xl font-semibold text-slate-900 dark:text-white">Employment</h3><p className="text-gray-600 dark:text-gray-400 mt-1">18 services available</p><a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">Explore <ArrowRight size={18} /></a></div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300"><div className="bg-orange-100 dark:bg-orange-900/50 p-4 rounded-full w-fit mb-4"><Home className="w-8 h-8 text-orange-600 dark:text-orange-400" /></div><h3 className="text-xl font-semibold text-slate-900 dark:text-white">Housing</h3><p className="text-gray-600 dark:text-gray-400 mt-1">12 services available</p><a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">Explore <ArrowRight size={18} /></a></div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300"><div className="bg-red-100 dark:bg-red-900/50 p-4 rounded-full w-fit mb-4"><HeartPulse className="w-8 h-8 text-red-600 dark:text-red-400" /></div><h3 className="text-xl font-semibold text-slate-900 dark:text-white">Healthcare</h3><p className="text-gray-600 dark:text-gray-400 mt-1">15 services available</p><a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">Explore <ArrowRight size={18} /></a></div>
-          </div>
-        </section>
       </div>
       
-      {/* Back to dark background for the final sections */}
+      {/* Dark background sections */}
       <div className="bg-[#0a192f]">
         {/* Highlights of Services Section */}
         <section className="container mx-auto px-8 py-20">
@@ -167,7 +169,83 @@ const HomePage: NextPage = () => {
             <div className="bg-gray-500/10 border border-gray-500/20 rounded-xl p-8 backdrop-blur-sm"><ClipboardCheck className="w-10 h-10 text-gray-400 mb-4" /><h3 className="text-2xl font-bold">Document Checklist</h3><p className="text-gray-300 mt-2">Stay prepared with required documents.</p></div>
           </div>
         </section>
+        
+        {/* Statistics Banner Section */}
+        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-12">
+            <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div className="flex flex-col items-center gap-2">
+                    <ClipboardList className="w-12 h-12 text-white/80" />
+                    <p className="text-5xl font-bold">120</p>
+                    <p className="text-lg text-white/90">Schemes Covered</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                    <MapPin className="w-12 h-12 text-white/80" />
+                    <p className="text-5xl font-bold">28</p>
+                    <p className="text-lg text-white/90">States Supported</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                    <UsersIcon className="w-12 h-12 text-white/80" />
+                    <p className="text-5xl font-bold">10,000</p>
+                    <p className="text-lg text-white/90">Users Served</p>
+                </div>
+            </div>
+        </section>
       </div>
+      
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300">
+        <div className="container mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Column 1: About */}
+            <div className="flex flex-col gap-4">
+                <h3 className="text-lg font-semibold text-white">Personalized Government Info Portal</h3>
+                <p className="text-sm">Your one-stop destination for personalized government schemes, services, and information.</p>
+                <div className="flex gap-4 mt-2">
+                    <a href="#" className="hover:text-white"><Facebook size={20} /></a>
+                    <a href="#" className="hover:text-white"><Twitter size={20} /></a>
+                    <a href="#" className="hover:text-white"><Linkedin size={20} /></a>
+                    <a href="#" className="hover:text-white"><Instagram size={20} /></a>
+                </div>
+            </div>
+
+            {/* Column 2: Quick Links */}
+            <div>
+                <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                <ul className="space-y-3">
+                    <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
+                    <li><a href="#" className="hover:text-white hover:underline">Services</a></li>
+                    <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
+                    <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
+                    <li><a href="#" className="hover:text-white hover:underline">Contact</a></li>
+                </ul>
+            </div>
+
+            {/* Column 3: Government Services */}
+            <div>
+                <h3 className="text-lg font-semibold text-white mb-4">Government Services</h3>
+                <ul className="space-y-3">
+                    <li className="flex justify-between items-center"><span>Aadhaar Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                    <li className="flex justify-between items-center"><span>PAN Card</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                    <li className="flex justify-between items-center"><span>Passport Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                    <li className="flex justify-between items-center"><span>Driving License</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                    <li className="flex justify-between items-center"><span>Birth Certificate</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                </ul>
+            </div>
+
+            {/* Column 4: Contact Us */}
+            <div>
+                <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+                <ul className="space-y-4 text-sm">
+                    <li className="flex items-start gap-3"><MapPin size={24} className="flex-shrink-0 mt-1" /><span>Government Complex, New Delhi, India</span></li>
+                    <li className="flex items-center gap-3"><Phone size={18} /><span>+91 1800-XXX-XXXX</span></li>
+                    <li className="flex items-center gap-3"><Mail size={18} /><span>info@pgip.gov.in</span></li>
+                    <li className="flex items-center gap-3"><Clock size={18} /><span>Mon-Fri: 9:00 AM - 6:00 PM</span></li>
+                </ul>
+            </div>
+        </div>
+        <div className="border-t border-gray-800 py-4">
+            <p className="text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} PGIP. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
