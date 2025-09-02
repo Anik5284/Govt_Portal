@@ -1,6 +1,20 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { Search, LogIn, ChevronDown, Rocket } from 'lucide-react';
+import {
+  Search,
+  LogIn,
+  ChevronDown,
+  Rocket,
+  Users,
+  Building,
+  TrendingUp,
+  Star,
+  GraduationCap,
+  Briefcase,
+  Home,
+  HeartPulse,
+  ArrowRight
+} from 'lucide-react';
 
 const HomePage: NextPage = () => {
   return (
@@ -24,7 +38,7 @@ const HomePage: NextPage = () => {
               </a>
             </li>
             <li><a href="#" className="hover:text-white transition-colors">Services</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+            <li><a href="#" className="#" className="hover:text-white transition-colors">Features</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Statistics</a></li>
             <li>
               <a href="#" className="flex items-center gap-1 hover:text-white transition-colors">
@@ -86,9 +100,8 @@ const HomePage: NextPage = () => {
 
           {/* Right Image */}
           <div className="flex justify-center items-center">
-            {/* Replace this with your actual image */}
             <Image
-              src="/futuristic-tunnel.png" // IMPORTANT: Add your image to the `public` folder
+              src="/futuristic-tunnel.png"
               alt="Futuristic neon tunnel"
               width={500}
               height={500}
@@ -98,6 +111,101 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </main>
+
+      {/* Statistics Section */}
+      <section className="container mx-auto px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {/* Stat Card 1 */}
+          <div className="flex flex-col items-center">
+            <div className="bg-blue-600/20 p-6 rounded-full">
+              <Users className="w-12 h-12 text-blue-400" />
+            </div>
+            <h3 className="text-4xl font-bold mt-4">1.2M+</h3>
+            <p className="text-gray-400 mt-1">Active Users</p>
+          </div>
+
+          {/* Stat Card 2 */}
+          <div className="flex flex-col items-center">
+            <div className="bg-green-600/20 p-6 rounded-full">
+              <Building className="w-12 h-12 text-green-400" />
+            </div>
+            <h3 className="text-4xl font-bold mt-4">500+</h3>
+            <p className="text-gray-400 mt-1">Government Services</p>
+          </div>
+
+          {/* Stat Card 3 */}
+          <div className="flex flex-col items-center">
+            <div className="bg-yellow-600/20 p-6 rounded-full">
+              <TrendingUp className="w-12 h-12 text-yellow-400" />
+            </div>
+            <h3 className="text-4xl font-bold mt-4">95%</h3>
+            <p className="text-gray-400 mt-1">Success Rate</p>
+          </div>
+
+          {/* Stat Card 4 */}
+          <div className="flex flex-col items-center">
+            <div className="bg-purple-600/20 p-6 rounded-full">
+              <Star className="w-12 h-12 text-purple-400" />
+            </div>
+            <h3 className="text-4xl font-bold mt-4">4.8</h3>
+            <p className="text-gray-400 mt-1">Satisfaction Score</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Government Services Section */}
+      <section className="container mx-auto px-8 py-16">
+        <h2 className="text-4xl font-bold text-center mb-12">Government Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Service Card 1: Education */}
+          <div className="bg-white rounded-lg p-6 shadow-md text-black hover:scale-105 transition-transform duration-300">
+            <div className="bg-green-100 p-4 rounded-full w-fit mb-4">
+              <GraduationCap className="w-8 h-8 text-green-600" />
+            </div>
+            <h3 className="text-xl font-semibold">Education</h3>
+            <p className="text-gray-600 mt-1">25 services available</p>
+            <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+              Explore <ArrowRight size={18} />
+            </a>
+          </div>
+
+          {/* Service Card 2: Employment */}
+          <div className="bg-white rounded-lg p-6 shadow-md text-black hover:scale-105 transition-transform duration-300">
+            <div className="bg-blue-100 p-4 rounded-full w-fit mb-4">
+              <Briefcase className="w-8 h-8 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-semibold">Employment</h3>
+            <p className="text-gray-600 mt-1">18 services available</p>
+            <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+              Explore <ArrowRight size={18} />
+            </a>
+          </div>
+
+          {/* Service Card 3: Housing */}
+          <div className="bg-white rounded-lg p-6 shadow-md text-black hover:scale-105 transition-transform duration-300">
+            <div className="bg-orange-100 p-4 rounded-full w-fit mb-4">
+              <Home className="w-8 h-8 text-orange-600" />
+            </div>
+            <h3 className="text-xl font-semibold">Housing</h3>
+            <p className="text-gray-600 mt-1">12 services available</p>
+            <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+              Explore <ArrowRight size={18} />
+            </a>
+          </div>
+
+          {/* Service Card 4: Healthcare */}
+          <div className="bg-white rounded-lg p-6 shadow-md text-black hover:scale-105 transition-transform duration-300">
+            <div className="bg-red-100 p-4 rounded-full w-fit mb-4">
+              <HeartPulse className="w-8 h-8 text-red-600" />
+            </div>
+            <h3 className="text-xl font-semibold">Healthcare</h3>
+            <p className="text-gray-600 mt-1">15 services available</p>
+            <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+              Explore <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
