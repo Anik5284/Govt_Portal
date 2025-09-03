@@ -118,13 +118,90 @@ export default function MyProfilePage() {
 
           {/* --- Academic Details Card --- */}
           <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center">
+            <div className="flex items-center mb-6">
               <GraduationCap className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
                 Academic Details
               </h2>
             </div>
-            {/* Additional academic form fields would be placed here */}
+
+            {/* Form Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Highest Qualification */}
+              <div className="space-y-2">
+                <label htmlFor="qualification" className="block text-sm font-medium text-gray-700">
+                  Highest Qualification
+                </label>
+                <select
+                  id="qualification"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">Select Qualification</option>
+                  <option value="highschool">High School</option>
+                  <option value="diploma">Diploma</option>
+                  <option value="bachelors">Bachelor’s</option>
+                  <option value="masters">Master’s</option>
+                  <option value="phd">Ph.D</option>
+                </select>
+              </div>
+
+              {/* Current Course */}
+              <div className="space-y-2">
+                <label htmlFor="course" className="block text-sm font-medium text-gray-700">
+                  Current Course
+                </label>
+                <input
+                  id="course"
+                  placeholder="e.g., B.Tech Computer Science"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+
+              {/* Institution */}
+              <div className="space-y-2">
+                <label htmlFor="institution" className="block text-sm font-medium text-gray-700">
+                  Institution
+                </label>
+                <input
+                  id="institution"
+                  placeholder="Institution name"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+
+              {/* Year of Passing */}
+              <div className="space-y-2">
+                <label htmlFor="year" className="block text-sm font-medium text-gray-700">
+                  Year of Passing
+                </label>
+                <select
+                  id="year"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">Select Year</option>
+                  {Array.from({ length: 50 }, (_, i) => {
+                    const year = 1980 + i;
+                    return (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              {/* Skills */}
+              <div className="md:col-span-2 space-y-2">
+                <label htmlFor="skills" className="block text-sm font-medium text-gray-700">
+                  Skills
+                </label>
+                <textarea
+                  id="skills"
+                  placeholder="List your skills (e.g., Programming, Data Analysis, Communication)"
+                  className="w-full rounded-md border border-gray-300 p-2 min-h-[100px] focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+            </div>
           </section>
         </div>
       </div>

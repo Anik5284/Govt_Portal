@@ -67,7 +67,7 @@ const HomePage: NextPage = () => {
           <div className="flex items-center gap-3"><div className="bg-blue-500 p-2 rounded-full"><Rocket className="w-6 h-6 text-white" /></div><span className="text-2xl font-bold tracking-wider">PGIP</span></div>
           <ul className="hidden md:flex items-center gap-8 text-gray-300">
             <li><a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">Home</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">My Profile</a></li>
+            <li><a href="/myprofile" className="hover:text-white transition-colors">My Profile</a></li>
             <li><a href="#" className="hover:text-white transition-colors">My Recommendations</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Timetable</a></li>
             <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
