@@ -3,7 +3,20 @@
 "use client";
 
 import * as React from "react";
-import { User, GraduationCap, Calendar as CalendarIcon, Users, FileText } from "lucide-react";
+import {
+  User,
+  GraduationCap,
+  Calendar as CalendarIcon,
+  Users,
+  FileText,
+  Heart,
+  Briefcase,
+  GraduationCap as ScholarshipIcon,
+  Landmark,
+  RefreshCw,
+  Save,
+  UserCheck,
+} from "lucide-react";
 
 export default function MyProfilePage() {
   const [date, setDate] = React.useState<string>("");
@@ -29,7 +42,6 @@ export default function MyProfilePage() {
               </h2>
             </div>
 
-            {/* Form Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="space-y-2">
@@ -89,7 +101,7 @@ export default function MyProfilePage() {
                 />
               </div>
 
-              {/* Email Address */}
+              {/* Email */}
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email Address
@@ -116,7 +128,7 @@ export default function MyProfilePage() {
             </div>
           </section>
 
-          {/* --- Academic Details Card --- */}
+          {/* --- Academic Details --- */}
           <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center mb-6">
               <GraduationCap className="h-6 w-6 text-blue-600 mr-3" />
@@ -126,7 +138,6 @@ export default function MyProfilePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Highest Qualification */}
               <div className="space-y-2">
                 <label htmlFor="qualification" className="block text-sm font-medium text-gray-700">
                   Highest Qualification
@@ -144,7 +155,6 @@ export default function MyProfilePage() {
                 </select>
               </div>
 
-              {/* Current Course */}
               <div className="space-y-2">
                 <label htmlFor="course" className="block text-sm font-medium text-gray-700">
                   Current Course
@@ -156,7 +166,6 @@ export default function MyProfilePage() {
                 />
               </div>
 
-              {/* Institution */}
               <div className="space-y-2">
                 <label htmlFor="institution" className="block text-sm font-medium text-gray-700">
                   Institution
@@ -168,7 +177,6 @@ export default function MyProfilePage() {
                 />
               </div>
 
-              {/* Year of Passing */}
               <div className="space-y-2">
                 <label htmlFor="year" className="block text-sm font-medium text-gray-700">
                   Year of Passing
@@ -189,7 +197,6 @@ export default function MyProfilePage() {
                 </select>
               </div>
 
-              {/* Skills */}
               <div className="md:col-span-2 space-y-2">
                 <label htmlFor="skills" className="block text-sm font-medium text-gray-700">
                   Skills
@@ -213,7 +220,6 @@ export default function MyProfilePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Caste Category */}
               <div className="space-y-2">
                 <label htmlFor="caste" className="block text-sm font-medium text-gray-700">
                   Caste Category
@@ -231,7 +237,6 @@ export default function MyProfilePage() {
                 </select>
               </div>
 
-              {/* Family Income */}
               <div className="space-y-2">
                 <label htmlFor="income" className="block text-sm font-medium text-gray-700">
                   Annual Family Income
@@ -261,7 +266,6 @@ export default function MyProfilePage() {
             </div>
 
             <div className="space-y-6">
-              {/* Resume Upload */}
               <div className="space-y-2">
                 <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
                   Resume Upload
@@ -275,7 +279,6 @@ export default function MyProfilePage() {
                 </div>
               </div>
 
-              {/* LinkedIn & GitHub */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
@@ -299,7 +302,6 @@ export default function MyProfilePage() {
                 </div>
               </div>
 
-              {/* Preferred Job Location */}
               <div className="space-y-2">
                 <label htmlFor="location" className="block text-sm font-medium text-gray-700">
                   Preferred Job Location
@@ -310,6 +312,55 @@ export default function MyProfilePage() {
                   className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
+            </div>
+          </section>
+
+          {/* --- Interests Selection --- */}
+          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+            <div className="flex items-center mb-4">
+              <Heart className="h-6 w-6 text-blue-600 mr-3" />
+              <h2 className="text-xl font-semibold text-gray-700">
+                Interests Selection
+              </h2>
+            </div>
+            <p className="text-gray-500 mb-6">
+              Select your areas of interest to receive personalized recommendations
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
+                <input type="checkbox" className="h-4 w-4 text-blue-600" />
+                <Briefcase className="h-5 w-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Jobs</span>
+              </label>
+
+              <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
+                <input type="checkbox" className="h-4 w-4 text-blue-600" />
+                <UserCheck className="h-5 w-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Internships</span>
+              </label>
+
+              <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
+                <input type="checkbox" className="h-4 w-4 text-blue-600" />
+                <ScholarshipIcon className="h-5 w-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Scholarships</span>
+              </label>
+
+              <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
+                <input type="checkbox" className="h-4 w-4 text-blue-600" />
+                <Landmark className="h-5 w-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Schemes</span>
+              </label>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex space-x-4">
+              <button className="flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-md shadow hover:bg-blue-700 w-full md:w-auto">
+                <Save className="h-5 w-5 mr-2" /> Save Changes
+              </button>
+              <button className="flex items-center justify-center bg-gray-200 text-gray-700 px-6 py-3 rounded-md shadow hover:bg-gray-300 w-full md:w-auto">
+                <RefreshCw className="h-5 w-5 mr-2" /> Reset
+              </button>
             </div>
           </section>
         </div>
