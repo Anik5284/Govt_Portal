@@ -3,7 +3,7 @@
 "use client";
 
 import * as React from "react";
-import { User, GraduationCap, Calendar as CalendarIcon } from "lucide-react";
+import { User, GraduationCap, Calendar as CalendarIcon, Users, FileText } from "lucide-react";
 
 export default function MyProfilePage() {
   const [date, setDate] = React.useState<string>("");
@@ -125,7 +125,6 @@ export default function MyProfilePage() {
               </h2>
             </div>
 
-            {/* Form Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Highest Qualification */}
               <div className="space-y-2">
@@ -199,6 +198,116 @@ export default function MyProfilePage() {
                   id="skills"
                   placeholder="List your skills (e.g., Programming, Data Analysis, Communication)"
                   className="w-full rounded-md border border-gray-300 p-2 min-h-[100px] focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* --- Caste & Family Income --- */}
+          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+            <div className="flex items-center mb-6">
+              <Users className="h-6 w-6 text-blue-600 mr-3" />
+              <h2 className="text-xl font-semibold text-gray-700">
+                Caste & Family Income
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Caste Category */}
+              <div className="space-y-2">
+                <label htmlFor="caste" className="block text-sm font-medium text-gray-700">
+                  Caste Category
+                </label>
+                <select
+                  id="caste"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">Select Category</option>
+                  <option value="general">General</option>
+                  <option value="obc">OBC</option>
+                  <option value="sc">SC</option>
+                  <option value="st">ST</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              {/* Family Income */}
+              <div className="space-y-2">
+                <label htmlFor="income" className="block text-sm font-medium text-gray-700">
+                  Annual Family Income
+                </label>
+                <select
+                  id="income"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">Select Income Range</option>
+                  <option value="<1">Less than ₹1 Lakh</option>
+                  <option value="1-5">₹1 Lakh - ₹5 Lakhs</option>
+                  <option value="5-10">₹5 Lakhs - ₹10 Lakhs</option>
+                  <option value="10-20">₹10 Lakhs - ₹20 Lakhs</option>
+                  <option value=">20">Above ₹20 Lakhs</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          {/* --- Additional Details --- */}
+          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+            <div className="flex items-center mb-6">
+              <FileText className="h-6 w-6 text-blue-600 mr-3" />
+              <h2 className="text-xl font-semibold text-gray-700">
+                Additional Details
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {/* Resume Upload */}
+              <div className="space-y-2">
+                <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
+                  Resume Upload
+                </label>
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
+                  <input type="file" id="resume" className="hidden" />
+                  <p className="text-gray-500">
+                    Drag and drop your resume or{" "}
+                    <span className="text-blue-600 cursor-pointer">browse files</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* LinkedIn & GitHub */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
+                    LinkedIn Profile
+                  </label>
+                  <input
+                    id="linkedin"
+                    placeholder="https://linkedin.com/in/yourprofile"
+                    className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="github" className="block text-sm font-medium text-gray-700">
+                    GitHub Profile
+                  </label>
+                  <input
+                    id="github"
+                    placeholder="https://github.com/yourusername"
+                    className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Preferred Job Location */}
+              <div className="space-y-2">
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+                  Preferred Job Location
+                </label>
+                <input
+                  id="location"
+                  placeholder="e.g., Mumbai, Delhi, Remote"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
             </div>
