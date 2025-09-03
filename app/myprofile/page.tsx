@@ -1,33 +1,12 @@
 // app/profile/page.tsx
 
+"use client";
+
 import * as React from "react";
 import { User, GraduationCap, Calendar as CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-
-// Assumed imports from a component library like shadcn/ui
-// You would typically install these via your terminal, e.g., `npx shadcn-ui@latest add ...`
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils"; // A utility for conditional class names
 
 export default function MyProfilePage() {
-  // State to manage the date for the date picker
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = React.useState<string>("");
 
   return (
     <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8">
@@ -54,79 +33,84 @@ export default function MyProfilePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
-                <Input id="fullName" placeholder="Enter your full name" />
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  placeholder="Enter your full name"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
               </div>
 
               {/* Date of Birth */}
               <div className="space-y-2">
-                <Label htmlFor="dob">Date of Birth</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "MM/dd/yyyy") : <span>mm/dd/yyyy</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
+                  Date of Birth
+                </label>
+                <div className="flex items-center border border-gray-300 rounded-md p-2">
+                  <CalendarIcon className="mr-2 h-4 w-4 text-gray-500" />
+                  <input
+                    type="date"
+                    id="dob"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="w-full outline-none"
+                  />
+                </div>
               </div>
 
               {/* Gender */}
               <div className="space-y-2">
-                <Label htmlFor="gender">Gender</Label>
-                <Select>
-                  <SelectTrigger id="gender">
-                    <SelectValue placeholder="Select Gender" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
+                <label htmlFor="gender" className="block text-sm font-medium text-gray-700">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               {/* Contact Number */}
               <div className="space-y-2">
-                <Label htmlFor="contactNumber">Contact Number</Label>
-                <Input
+                <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">
+                  Contact Number
+                </label>
+                <input
                   id="contactNumber"
                   placeholder="+91 12345 67890"
                   type="tel"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
               {/* Email Address */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <Input
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email Address
+                </label>
+                <input
                   id="email"
                   placeholder="your.email@example.com"
                   type="email"
+                  className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
 
               {/* Address */}
               <div className="md:col-span-2 space-y-2">
-                <Label htmlFor="address">Address</Label>
-                <Textarea
+                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                  Address
+                </label>
+                <textarea
                   id="address"
                   placeholder="Enter your complete address"
-                  className="min-h-[100px]"
+                  className="w-full rounded-md border border-gray-300 p-2 min-h-[100px] focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
             </div>
