@@ -18,12 +18,18 @@ import {
   UserCheck,
 } from "lucide-react";
 
+// Import Navbar
+import Navbar from "../components/Navbar";
+
 export default function MyProfilePage() {
   const [date, setDate] = React.useState<string>("");
 
   return (
-    <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="bg-gray-50 min-h-screen">
+      {/* Navbar */}
+      <Navbar />
+
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800">My Profile</h1>
@@ -45,7 +51,10 @@ export default function MyProfilePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="fullName"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Full Name
                 </label>
                 <input
@@ -57,7 +66,10 @@ export default function MyProfilePage() {
 
               {/* Date of Birth */}
               <div className="space-y-2">
-                <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="dob"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Date of Birth
                 </label>
                 <div className="flex items-center border border-gray-300 rounded-md p-2">
@@ -74,7 +86,10 @@ export default function MyProfilePage() {
 
               {/* Gender */}
               <div className="space-y-2">
-                <label htmlFor="gender" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Gender
                 </label>
                 <select
@@ -90,7 +105,10 @@ export default function MyProfilePage() {
 
               {/* Contact Number */}
               <div className="space-y-2">
-                <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="contactNumber"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Contact Number
                 </label>
                 <input
@@ -103,7 +121,10 @@ export default function MyProfilePage() {
 
               {/* Email */}
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email Address
                 </label>
                 <input
@@ -116,7 +137,10 @@ export default function MyProfilePage() {
 
               {/* Address */}
               <div className="md:col-span-2 space-y-2">
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="address"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Address
                 </label>
                 <textarea
@@ -139,7 +163,10 @@ export default function MyProfilePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="qualification" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="qualification"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Highest Qualification
                 </label>
                 <select
@@ -156,7 +183,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="course" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="course"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Current Course
                 </label>
                 <input
@@ -167,7 +197,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="institution" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="institution"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Institution
                 </label>
                 <input
@@ -178,7 +211,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="year" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="year"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Year of Passing
                 </label>
                 <select
@@ -198,7 +234,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="md:col-span-2 space-y-2">
-                <label htmlFor="skills" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="skills"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Skills
                 </label>
                 <textarea
@@ -221,7 +260,10 @@ export default function MyProfilePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="caste" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="caste"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Caste Category
                 </label>
                 <select
@@ -238,7 +280,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="income" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="income"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Annual Family Income
                 </label>
                 <select
@@ -267,21 +312,29 @@ export default function MyProfilePage() {
 
             <div className="space-y-6">
               <div className="space-y-2">
-                <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="resume"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Resume Upload
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
                   <input type="file" id="resume" className="hidden" />
                   <p className="text-gray-500">
                     Drag and drop your resume or{" "}
-                    <span className="text-blue-600 cursor-pointer">browse files</span>
+                    <span className="text-blue-600 cursor-pointer">
+                      browse files
+                    </span>
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="linkedin"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     LinkedIn Profile
                   </label>
                   <input
@@ -291,7 +344,10 @@ export default function MyProfilePage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="github" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="github"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     GitHub Profile
                   </label>
                   <input
@@ -303,7 +359,10 @@ export default function MyProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Preferred Job Location
                 </label>
                 <input
@@ -324,7 +383,8 @@ export default function MyProfilePage() {
               </h2>
             </div>
             <p className="text-gray-500 mb-6">
-              Select your areas of interest to receive personalized recommendations
+              Select your areas of interest to receive personalized
+              recommendations
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
