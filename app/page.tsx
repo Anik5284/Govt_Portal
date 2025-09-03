@@ -1,12 +1,151 @@
+'use client';
+
+import { useState } from 'react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import {
-  Search, LogIn, ChevronDown, Rocket, Users, Building, TrendingUp, Star,
+  Search, LogIn, Rocket, Users, Building, TrendingUp, Star,
   GraduationCap, Briefcase, Home, HeartPulse, ArrowRight, Megaphone,
   BookOpenCheck, Landmark, UserCheck, Bell, ClipboardCheck, Shield,
   Banknote, FileText, ClipboardList, MapPin, Users as UsersIcon,
-  Facebook, Twitter, Linkedin, Instagram, Phone, Mail, Clock
+  Facebook, Twitter, Linkedin, Instagram, Phone, Mail, Clock, Lock, Eye, EyeOff, X
 } from 'lucide-react';
+
+// Re-defining LoginForm directly inside page.tsx for a single-file example.
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log({ email, password });
+    // In a real app, you would show a UI message instead of an alert.
+  };
+
+  return (
+    <>
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="inline-block bg-blue-600 p-3 rounded-full mb-4">
+          <Rocket className="w-8 h-8 text-white" />
+        </div>
+        <h1 className="text-3xl font-bold text-slate-800 dark:text-white">
+          Welcome Back
+        </h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">
+          Sign in to access your portal
+        </p>
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Email */}
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+          >
+            Email Address
+          </label>
+          <div className="relative mt-1">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Mail className="w-5 h-5 text-slate-400" />
+            </div>
+            <input
+              id="email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white/50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="you@example.com"
+            />
+          </div>
+        </div>
+
+        {/* Password */}
+        <div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+          >
+            Password
+          </label>
+          <div className="relative mt-1">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Lock className="w-5 h-5 text-slate-400" />
+            </div>
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full pl-10 pr-10 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white/50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="••••••••"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+            >
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-between">
+            <div className="flex items-center">
+                <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-600 dark:text-slate-400">Remember me</label>
+            </div>
+            <div className="text-sm">
+                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">Forgot your password?</a>
+            </div>
+        </div>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          className="w-full flex justify-center py-2.5 px-4 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800 focus:ring-blue-500"
+        >
+          Sign In
+        </button>
+      </form>
+    </>
+  );
+};
+
+
+// The Login Modal component that will contain the LoginForm
+const LoginModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      onClick={onClose}
+      // UPDATED: Removed bg-black and bg-opacity-60, added backdrop-blur-sm
+      className="fixed inset-0 backdrop-blur-sm z-50 flex justify-center items-center p-4 transition-opacity duration-300"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()} // Prevents modal from closing when clicking inside
+        // UPDATED: Made background semi-transparent and removed backdrop-blur from here
+        className="bg-white/90 dark:bg-slate-800/90 rounded-xl shadow-2xl w-full max-w-md relative animate-fade-in-up"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors z-10"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <div className="p-8">
+            <LoginForm />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 // Data for the schemes to avoid repeating JSX
 const schemesData = [
@@ -57,12 +196,29 @@ const getServiceCardColors = (color: string) => {
   return colors[color] || colors['green'];
 };
 
-
 const HomePage: NextPage = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   return (
     <div className="bg-[#112240] min-h-screen text-white font-sans">
+      <style jsx global>{`
+        @keyframes fade-in-up {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.3s ease-out forwards;
+        }
+      `}</style>
+      
       {/* Header / Navbar */}
-      <header className="container mx-auto px-8 py-4 bg-[#112240]/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="container mx-auto px-8 py-4 bg-[#112240]/80 backdrop-blur-sm sticky top-0 z-40">
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-3"><div className="bg-blue-500 p-2 rounded-full"><Rocket className="w-6 h-6 text-white" /></div><span className="text-2xl font-bold tracking-wider">PGIP</span></div>
           <ul className="hidden md:flex items-center gap-8 text-gray-300">
@@ -70,9 +226,20 @@ const HomePage: NextPage = () => {
             <li><a href="/myprofile" className="hover:text-white transition-colors">My Profile</a></li>
             <li><a href="/myrecommendations" className="hover:text-white transition-colors">My Recommendations</a></li>
             <li><a href="/timetable" className="hover:text-white transition-colors">Timetable</a></li>
-            <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="" className="hover:text-white transition-colors">About Us</a></li>
           </ul>
-          <div className="hidden md:flex items-center gap-4"><div className="relative"><input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" /><Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} /></div><button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md"><LogIn size={18} />Login</button></div>
+          <div className="hidden md:flex items-center gap-4">
+            <div className="relative">
+              <input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            </div>
+            <button
+              onClick={() => setIsLoginOpen(true)}
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md"
+            >
+              <LogIn size={18} />Login
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -81,7 +248,7 @@ const HomePage: NextPage = () => {
         <main className="container mx-auto px-8 py-20">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="flex flex-col gap-6"><h1 className="text-5xl md:text-6xl font-extrabold leading-tight">Personalized Government Info Portal</h1><p className="text-lg text-gray-300">Access personalized government schemes, services, and information tailored to your profile. Stay updated with relevant opportunities and benefits.</p><div className="relative mt-4"><input type="text" placeholder="Search for schemes, services, or documents..." className="w-full bg-[#1e2a47] border border-gray-600 rounded-full py-4 pl-6 pr-16 text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" /><button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-3 rounded-full transition-colors"><Search className="w-6 h-6 text-white" /></button></div><div className="flex items-center gap-4 mt-4"><button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">Explore Services</button><button className="border-2 border-gray-500 hover:bg-gray-700 hover:border-gray-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">Learn More</button></div></div>
-            <div className="flex justify-center items-center"><Image src="/futuristic-tunnel.png" alt="Futuristic neon tunnel" width={500} height={500} className="rounded-lg shadow-2xl shadow-blue-500/20" priority /></div>
+            <div className="flex justify-center items-center"><img src="https://placehold.co/500x500/0a192f/60a5fa?text=PGIP" alt="Futuristic neon tunnel" width="500" height="500" className="rounded-lg shadow-2xl shadow-blue-500/20" /></div>
           </div>
         </main>
 
@@ -195,57 +362,60 @@ const HomePage: NextPage = () => {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300">
         <div className="container mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {/* Column 1: About */}
-            <div className="flex flex-col gap-4">
-                <h3 className="text-lg font-semibold text-white">Personalized Government Info Portal</h3>
-                <p className="text-sm">Your one-stop destination for personalized government schemes, services, and information.</p>
-                <div className="flex gap-4 mt-2">
-                    <a href="#" className="hover:text-white"><Facebook size={20} /></a>
-                    <a href="#" className="hover:text-white"><Twitter size={20} /></a>
-                    <a href="#" className="hover:text-white"><Linkedin size={20} /></a>
-                    <a href="#" className="hover:text-white"><Instagram size={20} /></a>
-                </div>
-            </div>
+          {/* Column 1: About */}
+          <div className="flex flex-col gap-4">
+              <h3 className="text-lg font-semibold text-white">Personalized Government Info Portal</h3>
+              <p className="text-sm">Your one-stop destination for personalized government schemes, services, and information.</p>
+              <div className="flex gap-4 mt-2">
+                  <a href="#" className="hover:text-white"><Facebook size={20} /></a>
+                  <a href="#" className="hover:text-white"><Twitter size={20} /></a>
+                  <a href="#" className="hover:text-white"><Linkedin size={20} /></a>
+                  <a href="#" className="hover:text-white"><Instagram size={20} /></a>
+              </div>
+          </div>
 
-            {/* Column 2: Quick Links */}
-            <div>
-                <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-                <ul className="space-y-3">
-                    <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
-                    <li><a href="#" className="hover:text-white hover:underline">Services</a></li>
-                    <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
-                    <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
-                    <li><a href="#" className="hover:text-white hover:underline">Contact</a></li>
-                </ul>
-            </div>
+          {/* Column 2: Quick Links */}
+          <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+              <ul className="space-y-3">
+                  <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
+                  <li><a href="#" className="hover:text-white hover:underline">Services</a></li>
+                  <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
+                  <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
+                  <li><a href="#" className="hover:text-white hover:underline">Contact</a></li>
+              </ul>
+          </div>
 
-            {/* Column 3: Government Services */}
-            <div>
-                <h3 className="text-lg font-semibold text-white mb-4">Government Services</h3>
-                <ul className="space-y-3">
-                    <li className="flex justify-between items-center"><span>Aadhaar Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
-                    <li className="flex justify-between items-center"><span>PAN Card</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
-                    <li className="flex justify-between items-center"><span>Passport Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
-                    <li className="flex justify-between items-center"><span>Driving License</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
-                    <li className="flex justify-between items-center"><span>Birth Certificate</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
-                </ul>
-            </div>
+          {/* Column 3: Government Services */}
+          <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Government Services</h3>
+              <ul className="space-y-3">
+                  <li className="flex justify-between items-center"><span>Aadhaar Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                  <li className="flex justify-between items-center"><span>PAN Card</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                  <li className="flex justify-between items-center"><span>Passport Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                  <li className="flex justify-between items-center"><span>Driving License</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+                  <li className="flex justify-between items-center"><span>Birth Certificate</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+              </ul>
+          </div>
 
-            {/* Column 4: Contact Us */}
-            <div>
-                <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
-                <ul className="space-y-4 text-sm">
-                    <li className="flex items-start gap-3"><MapPin size={24} className="flex-shrink-0 mt-1" /><span>Government Complex, New Delhi, India</span></li>
-                    <li className="flex items-center gap-3"><Phone size={18} /><span>+91 1800-XXX-XXXX</span></li>
-                    <li className="flex items-center gap-3"><Mail size={18} /><span>info@pgip.gov.in</span></li>
-                    <li className="flex items-center gap-3"><Clock size={18} /><span>Mon-Fri: 9:00 AM - 6:00 PM</span></li>
-                </ul>
-            </div>
+          {/* Column 4: Contact Us */}
+          <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+              <ul className="space-y-4 text-sm">
+                  <li className="flex items-start gap-3"><MapPin size={24} className="flex-shrink-0 mt-1" /><span>Government Complex, New Delhi, India</span></li>
+                  <li className="flex items-center gap-3"><Phone size={18} /><span>+91 1800-XXX-XXXX</span></li>
+                  <li className="flex items-center gap-3"><Mail size={18} /><span>info@pgip.gov.in</span></li>
+                  <li className="flex items-center gap-3"><Clock size={18} /><span>Mon-Fri: 9:00 AM - 6:00 PM</span></li>
+              </ul>
+          </div>
         </div>
         <div className="border-t border-gray-800 py-4">
             <p className="text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} PGIP. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* The Login Modal component */}
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
   );
 };

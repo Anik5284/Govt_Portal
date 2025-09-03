@@ -16,37 +16,49 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[#0f2347] text-white">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
+    <header className="sticky top-0 z-50 bg-[#0f2347]/90 backdrop-blur-md shadow-md">
+      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 text-white">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="bg-blue-600 p-2 rounded-full">
-            <Rocket className="h-5 w-5 text-white" />
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-full shadow-md">
+            <Rocket className="h-6 w-6 text-white" />
           </div>
-          <span className="font-semibold text-lg">PGIP</span>
+          <span className="text-xl font-bold tracking-wide">PGIP</span>
         </div>
 
         {/* Links */}
-        <div className="flex space-x-8">
+        <ul className="hidden md:flex items-center gap-8 text-gray-300">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative font-medium ${
-                  isActive ? "text-white" : "text-gray-300 hover:text-white"
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-400" />
-                )}
-              </Link>
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className={`relative transition-colors duration-300 ${
+                    isActive
+                      ? "text-white font-semibold border-b-2 border-blue-500 pb-1"
+                      : "hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              </li>
             );
           })}
+        </ul>
+
+        {/* Right section (optional for login / search) */}
+        <div className="hidden md:flex items-center gap-4">
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button className="bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-md font-medium shadow">
+            Login
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
