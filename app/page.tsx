@@ -68,9 +68,9 @@ const HomePage: NextPage = () => {
           <ul className="hidden md:flex items-center gap-8 text-gray-300">
             <li><a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">Home</a></li>
             <li><a href="/myprofile" className="hover:text-white transition-colors">My Profile</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">My Recommendations</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Timetable</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="/myrecommendations" className="hover:text-white transition-colors">My Recommendations</a></li>
+            <li><a href="/timetable" className="hover:text-white transition-colors">Timetable</a></li>
+            <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
           </ul>
           <div className="hidden md:flex items-center gap-4"><div className="relative"><input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" /><Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} /></div><button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md"><LogIn size={18} />Login</button></div>
         </nav>
