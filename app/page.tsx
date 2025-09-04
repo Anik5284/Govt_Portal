@@ -86,7 +86,7 @@ const HomePage: NextPage = () => {
             <li><a href="/myprofile" className="hover:text-white transition-colors">My Profile</a></li>
             <li><a href="/myrecommendations" className="hover:text-white transition-colors">My Recommendations</a></li>
             <li><a href="/timetable" className="hover:text-white transition-colors">Timetable</a></li>
-            <li><a href="" className="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="/aboutus" className="hover:text-white transition-colors">About Us</a></li>
           </ul>
           <div className="hidden md:flex items-center gap-4">
             <div className="relative">
