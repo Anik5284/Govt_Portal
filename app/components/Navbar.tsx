@@ -12,7 +12,7 @@ export default function Navbar() {
     { name: "My Profile", href: "/myprofile" },
     { name: "My Recommendations", href: "/myrecommendations" },
     { name: "Timetable", href: "/timetable" },
-    { name: "About Us", href: "/about" },
+    { name: "About Us", href: "/aboutus" },
   ];
 
   return (
