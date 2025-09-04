@@ -1,151 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import type { NextPage } from 'next';
 import {
-  Search, LogIn, Rocket, Users, Building, TrendingUp, Star,
+  Search, Rocket, Users, Building, TrendingUp, Star,
   GraduationCap, Briefcase, Home, HeartPulse, ArrowRight, Megaphone,
   BookOpenCheck, Landmark, UserCheck, Bell, ClipboardCheck, Shield,
   Banknote, FileText, ClipboardList, MapPin, Users as UsersIcon,
-  Facebook, Twitter, Linkedin, Instagram, Phone, Mail, Clock, Lock, Eye, EyeOff, X
+  Facebook, Twitter, Linkedin, Instagram, Phone, Mail, Clock
 } from 'lucide-react';
-
-// Re-defining LoginForm directly inside page.tsx for a single-file example.
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log({ email, password });
-    // In a real app, you would show a UI message instead of an alert.
-  };
-
-  return (
-    <>
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-block bg-blue-600 p-3 rounded-full mb-4">
-          <Rocket className="w-8 h-8 text-white" />
-        </div>
-        <h1 className="text-3xl font-bold text-slate-800 dark:text-white">
-          Welcome Back
-        </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-2">
-          Sign in to access your portal
-        </p>
-      </div>
-
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Email */}
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-          >
-            Email Address
-          </label>
-          <div className="relative mt-1">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail className="w-5 h-5 text-slate-400" />
-            </div>
-            <input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white/50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
-            />
-          </div>
-        </div>
-
-        {/* Password */}
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
-          >
-            Password
-          </label>
-          <div className="relative mt-1">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className="w-5 h-5 text-slate-400" />
-            </div>
-            <input
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-10 pr-10 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white/50 dark:bg-slate-700/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-            >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-        
-        <div className="flex items-center justify-between">
-            <div className="flex items-center">
-                <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-600 dark:text-slate-400">Remember me</label>
-            </div>
-            <div className="text-sm">
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">Forgot your password?</a>
-            </div>
-        </div>
-
-        {/* Submit */}
-        <button
-          type="submit"
-          className="w-full flex justify-center py-2.5 px-4 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800 focus:ring-blue-500"
-        >
-          Sign In
-        </button>
-      </form>
-    </>
-  );
-};
-
-
-// The Login Modal component that will contain the LoginForm
-const LoginModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div 
-      onClick={onClose}
-      // UPDATED: Removed bg-black and bg-opacity-60, added backdrop-blur-sm
-      className="fixed inset-0 backdrop-blur-sm z-50 flex justify-center items-center p-4 transition-opacity duration-300"
-    >
-      <div 
-        onClick={(e) => e.stopPropagation()} // Prevents modal from closing when clicking inside
-        // UPDATED: Made background semi-transparent and removed backdrop-blur from here
-        className="bg-white/90 dark:bg-slate-800/90 rounded-xl shadow-2xl w-full max-w-md relative animate-fade-in-up"
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors z-10"
-        >
-          <X className="w-6 h-6" />
-        </button>
-        <div className="p-8">
-            <LoginForm />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 
 // Data for the schemes to avoid repeating JSX
 const schemesData = [
@@ -197,8 +59,6 @@ const getServiceCardColors = (color: string) => {
 };
 
 const HomePage: NextPage = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
   return (
     <div className="bg-[#112240] min-h-screen text-white font-sans">
       <style jsx global>{`
@@ -233,12 +93,6 @@ const HomePage: NextPage = () => {
               <input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
             </div>
-            <button
-              onClick={() => setIsLoginOpen(true)}
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-md"
-            >
-              <LogIn size={18} />Login
-            </button>
           </div>
         </nav>
       </header>
@@ -413,9 +267,6 @@ const HomePage: NextPage = () => {
             <p className="text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} PGIP. All rights reserved.</p>
         </div>
       </footer>
-
-      {/* The Login Modal component */}
-      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
   );
 };
