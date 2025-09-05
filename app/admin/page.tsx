@@ -4,14 +4,24 @@ import { useState } from 'react';
 import type { NextPage } from 'next';
 import {
   Users, Star, Calendar, Edit, Trash2, Megaphone,
-  BookOpenCheck, Landmark
+  BookOpenCheck, Landmark, UserCheck, Bell, ClipboardCheck
 } from 'lucide-react';
 
 // A type for the active section state for better type-safety
-type AdminSection = 'details' | 'recommendations' | 'timetable' | 'schemes' | 'exams' | 'taxUpdates';
+type AdminSection =
+  | 'details'
+  | 'recommendations'
+  | 'timetable'
+  | 'schemes'
+  | 'exams'
+  | 'taxUpdates'
+  | 'personalization'
+  | 'alerts'
+  | 'documentChecklist';
+
 
 // ====================================================================
-// SECTION 1: USER DETAILS COMPONENT (Unchanged)
+// SECTION 1: USER DETAILS COMPONENT
 // ====================================================================
 const UserDetailsSection = () => {
   // Mock data for user details
@@ -57,7 +67,7 @@ const UserDetailsSection = () => {
 };
 
 // ====================================================================
-// SECTION 2: USER RECOMMENDATIONS COMPONENT (Unchanged)
+// SECTION 2: USER RECOMMENDATIONS COMPONENT
 // ====================================================================
 const UserRecommendationsSection = () => {
   return (
@@ -92,7 +102,7 @@ const UserRecommendationsSection = () => {
 };
 
 // ====================================================================
-// SECTION 3: UPDATE TIMETABLE COMPONENT (Unchanged)
+// SECTION 3: UPDATE TIMETABLE COMPONENT
 // ====================================================================
 const UpdateTimetableSection = () => {
   return (
@@ -127,7 +137,7 @@ const UpdateTimetableSection = () => {
 };
 
 // ====================================================================
-// SECTION 4: MANAGE SCHEMES COMPONENT (New)
+// SECTION 4: MANAGE SCHEMES COMPONENT
 // ====================================================================
 const SchemesSection = () => {
     const schemes = [
@@ -188,7 +198,7 @@ const SchemesSection = () => {
 };
 
 // ====================================================================
-// SECTION 5: MANAGE EXAMS COMPONENT (New)
+// SECTION 5: MANAGE EXAMS COMPONENT
 // ====================================================================
 const ExamsSection = () => {
     const exams = [
@@ -251,7 +261,7 @@ const ExamsSection = () => {
 
 
 // ====================================================================
-// SECTION 6: MANAGE TAX UPDATES COMPONENT (New)
+// SECTION 6: MANAGE TAX UPDATES COMPONENT
 // ====================================================================
 const TaxUpdatesSection = () => {
     const updates = [
@@ -308,29 +318,186 @@ const TaxUpdatesSection = () => {
     );
 };
 
+// ====================================================================
+// SECTION 7: PERSONALIZATION COMPONENT (New)
+// ====================================================================
+const PersonalizationSection = () => {
+    const rules = [
+        { id: 'per_001', name: 'Farmers in West Bengal', content: 'PM Fasal Bima Yojana' },
+        { id: 'per_002', name: 'Students preparing for UPSC', content: 'UPSC Civil Services Exam Timetable' },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Create Personalization Rule</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="ruleName" className="block text-sm font-medium text-slate-300 mb-1">Rule Name</label>
+                        <input type="text" id="ruleName" placeholder="e.g., Senior Citizens - Health Schemes" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <label htmlFor="ruleContent" className="block text-sm font-medium text-slate-300 mb-1">Tailored Content</label>
+                        <textarea id="ruleContent" rows={3} placeholder="Content to show for this profile, e.g., Ayushman Bharat" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Save Rule</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Active Rules</h2>
+                <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Rule Name</th>
+                            <th className="p-4">Tailored Content</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rules.map(rule => (
+                            <tr key={rule.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4">{rule.name}</td>
+                                <td className="p-4">{rule.content}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-blue-400 hover:text-blue-300"><Edit size={18} /></button>
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
 
 // ====================================================================
-// MAIN ADMIN PAGE COMPONENT (Updated)
+// SECTION 8: ALERTS COMPONENT (New)
+// ====================================================================
+const AlertsSection = () => {
+    const alerts = [
+        { id: 'alrt_001', title: 'PAN-Aadhaar Linking Deadline', sent: '2025-09-01' },
+        { id: 'alrt_002', title: 'New Vaccination Drive', sent: '2025-08-25' },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Send an Alert</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="alertTitle" className="block text-sm font-medium text-slate-300 mb-1">Alert Title</label>
+                        <input type="text" id="alertTitle" placeholder="Brief title for the notification" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <label htmlFor="alertMessage" className="block text-sm font-medium text-slate-300 mb-1">Message</label>
+                        <textarea id="alertMessage" rows={4} placeholder="The full alert message to be sent to users..." className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Send Alert Now</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Sent Alerts</h2>
+                <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Title</th>
+                            <th className="p-4">Date Sent</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {alerts.map(alert => (
+                            <tr key={alert.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4">{alert.title}</td>
+                                <td className="p-4">{alert.sent}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+// ====================================================================
+// SECTION 9: DOCUMENT CHECKLIST COMPONENT (New)
+// ====================================================================
+const DocumentChecklistSection = () => {
+    const checklists = [
+        { id: 'doc_001', name: 'Passport Application', count: 5 },
+        { id: 'doc_002', name: 'Aadhaar Card Update', count: 2 },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Create Document Checklist</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="serviceName" className="block text-sm font-medium text-slate-300 mb-1">Service / Scheme Name</label>
+                        <input type="text" id="serviceName" placeholder="e.g., Driving License Application" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <label htmlFor="requiredDocs" className="block text-sm font-medium text-slate-300 mb-1">Required Documents</label>
+                        <textarea id="requiredDocs" rows={5} placeholder="List each document on a new line..." className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Save Checklist</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Existing Checklists</h2>
+                <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Service / Scheme Name</th>
+                            <th className="p-4">Documents Required</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {checklists.map(item => (
+                            <tr key={item.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4">{item.name}</td>
+                                <td className="p-4">{item.count}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-blue-400 hover:text-blue-300"><Edit size={18} /></button>
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+
+// ====================================================================
+// MAIN ADMIN PAGE COMPONENT
 // ====================================================================
 const AdminPage: NextPage = () => {
   const [activeSection, setActiveSection] = useState<AdminSection>('details');
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'details':
-        return <UserDetailsSection />;
-      case 'recommendations':
-        return <UserRecommendationsSection />;
-      case 'timetable':
-        return <UpdateTimetableSection />;
-      case 'schemes':
-        return <SchemesSection />;
-      case 'exams':
-        return <ExamsSection />;
-      case 'taxUpdates':
-        return <TaxUpdatesSection />;
-      default:
-        return <UserDetailsSection />;
+      case 'details': return <UserDetailsSection />;
+      case 'recommendations': return <UserRecommendationsSection />;
+      case 'timetable': return <UpdateTimetableSection />;
+      case 'schemes': return <SchemesSection />;
+      case 'exams': return <ExamsSection />;
+      case 'taxUpdates': return <TaxUpdatesSection />;
+      case 'personalization': return <PersonalizationSection />;
+      case 'alerts': return <AlertsSection />;
+      case 'documentChecklist': return <DocumentChecklistSection />;
+      default: return <UserDetailsSection />;
     }
   };
 
@@ -372,7 +539,6 @@ const AdminPage: NextPage = () => {
             >
               <Calendar size={20} /> Update Timetable
             </button>
-            {/* --- New Buttons --- */}
              <button
               onClick={() => setActiveSection('schemes')}
               className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'schemes' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
@@ -390,6 +556,24 @@ const AdminPage: NextPage = () => {
               className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'taxUpdates' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
             >
               <Landmark size={20} /> Tax Updates
+            </button>
+             <button
+              onClick={() => setActiveSection('personalization')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'personalization' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <UserCheck size={20} /> Personalization
+            </button>
+             <button
+              onClick={() => setActiveSection('alerts')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'alerts' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <Bell size={20} /> Alerts
+            </button>
+             <button
+              onClick={() => setActiveSection('documentChecklist')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'documentChecklist' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <ClipboardCheck size={20} /> Document Checklist
             </button>
           </nav>
         </aside>
