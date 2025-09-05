@@ -76,7 +76,7 @@ const HomePage: NextPage = () => {
           animation: fade-in-up 0.3s ease-out forwards;
         }
       `}</style>
-      
+
       {/* Header / Navbar */}
       <header className="container mx-auto px-8 py-4 bg-[#112240]/80 backdrop-blur-sm sticky top-0 z-40">
         <nav className="flex items-center justify-between">
@@ -117,58 +117,59 @@ const HomePage: NextPage = () => {
         </section>
       </div>
 
-      {/* Light background sections */}
-      <div className="bg-slate-100 dark:bg-slate-900">
-        {/* Government Services Section */}
-        <section className="container mx-auto px-8 py-20">
-          <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Government Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {servicesData.map((service) => {
-              const { bg, text } = getServiceCardColors(service.color);
-              return (
-                <div key={service.title} className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300">
-                  <div className={`${bg} p-4 rounded-full w-fit mb-4`}>
-                    <service.Icon className={`w-8 h-8 ${text}`} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mt-1">{service.description}</p>
-                  <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
-                    Explore <ArrowRight size={18} />
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Popular Government Schemes Section */}
-        <section className="container mx-auto px-8 py-20">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 dark:text-white">Popular Government Schemes</h2>
-            <div className="mt-4 h-1 w-24 bg-blue-500 mx-auto rounded-full"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {schemesData.map((scheme, index) => (
-              <div key={index} className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-lg border border-slate-200 dark:border-slate-700 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white pr-4">{scheme.title}</h3>
-                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.category)}`}>{scheme.category}</span>
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.priority)}`}>{scheme.priority}</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-2">{scheme.description}</p>
-                <p className="text-gray-600 dark:text-gray-400 mb-6"><strong className="text-slate-700 dark:text-slate-300">Eligibility:</strong> {scheme.eligibility}</p>
-                <div className="mt-auto flex items-center gap-4">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-md transition-colors">Learn More</button>
-                  <button className="border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 px-5 rounded-md transition-colors">Check Eligibility</button>
-                </div>
+      {/* Government Services Section */}
+      <section className="bg-gradient-to-b from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800 py-20">
+          <div className="container mx-auto px-8">
+              <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Government Services</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {servicesData.map((service) => {
+                      const { bg, text } = getServiceCardColors(service.color);
+                      return (
+                          <div key={service.title} className="bg-white dark:bg-slate-800/50 rounded-lg p-6 shadow-md hover:scale-105 transition-transform duration-300 border border-transparent dark:border-slate-700/50">
+                              <div className={`${bg} p-4 rounded-full w-fit mb-4`}>
+                                  <service.Icon className={`w-8 h-8 ${text}`} />
+                              </div>
+                              <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{service.title}</h3>
+                              <p className="text-gray-600 dark:text-gray-400 mt-1">{service.description}</p>
+                              <a href="#" className="flex items-center gap-2 text-blue-600 hover:underline mt-4">
+                                  Explore <ArrowRight size={18} />
+                              </a>
+                          </div>
+                      );
+                  })}
               </div>
-            ))}
           </div>
-        </section>
-      </div>
-      
+      </section>
+
+      {/* Popular Government Schemes Section */}
+      <section className="bg-gradient-to-b from-slate-200 to-slate-50 dark:from-slate-800 dark:to-slate-900 py-20">
+          <div className="container mx-auto px-8">
+              <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-slate-800 dark:text-white">Popular Government Schemes</h2>
+                  <div className="mt-4 h-1 w-24 bg-blue-500 mx-auto rounded-full"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {schemesData.map((scheme, index) => (
+                      <div key={index} className="bg-white dark:bg-slate-800/50 rounded-lg p-6 shadow-lg border border-slate-200/50 dark:border-slate-700/50 flex flex-col">
+                          <div className="flex justify-between items-start mb-4">
+                              <h3 className="text-xl font-bold text-slate-900 dark:text-white pr-4">{scheme.title}</h3>
+                              <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.category)}`}>{scheme.category}</span>
+                                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.priority)}`}>{scheme.priority}</span>
+                              </div>
+                          </div>
+                          <p className="text-gray-600 dark:text-gray-400 mb-2">{scheme.description}</p>
+                          <p className="text-gray-600 dark:text-gray-400 mb-6"><strong className="text-slate-700 dark:text-slate-300">Eligibility:</strong> {scheme.eligibility}</p>
+                          <div className="mt-auto flex items-center gap-4">
+                              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-md transition-colors">Learn More</button>
+                              <button className="border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 px-5 rounded-md transition-colors">Check Eligibility</button>
+                          </div>
+                      </div>
+                  ))}
+              </div>
+          </div>
+      </section>
+
       {/* Dark background sections */}
       <div className="bg-[#0a192f]">
         {/* Highlights of Services Section */}
@@ -190,7 +191,7 @@ const HomePage: NextPage = () => {
             <div className="bg-gray-500/10 border border-gray-500/20 rounded-xl p-8 backdrop-blur-sm"><ClipboardCheck className="w-10 h-10 text-gray-400 mb-4" /><h3 className="text-2xl font-bold">Document Checklist</h3><p className="text-gray-300 mt-2">Stay prepared with required documents.</p></div>
           </div>
         </section>
-        
+
         {/* Statistics Banner Section */}
         <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-12">
             <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -212,7 +213,7 @@ const HomePage: NextPage = () => {
             </div>
         </section>
       </div>
-      
+
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300">
         <div className="container mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
