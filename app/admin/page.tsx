@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 import type { NextPage } from 'next';
-import { Users, Star, Calendar, Edit, Trash2 } from 'lucide-react';
+import {
+  Users, Star, Calendar, Edit, Trash2, Megaphone,
+  BookOpenCheck, Landmark
+} from 'lucide-react';
 
 // A type for the active section state for better type-safety
-type AdminSection = 'details' | 'recommendations' | 'timetable';
+type AdminSection = 'details' | 'recommendations' | 'timetable' | 'schemes' | 'exams' | 'taxUpdates';
 
 // ====================================================================
-// SECTION 1: USER DETAILS COMPONENT
+// SECTION 1: USER DETAILS COMPONENT (Unchanged)
 // ====================================================================
 const UserDetailsSection = () => {
   // Mock data for user details
@@ -54,7 +57,7 @@ const UserDetailsSection = () => {
 };
 
 // ====================================================================
-// SECTION 2: USER RECOMMENDATIONS COMPONENT
+// SECTION 2: USER RECOMMENDATIONS COMPONENT (Unchanged)
 // ====================================================================
 const UserRecommendationsSection = () => {
   return (
@@ -89,7 +92,7 @@ const UserRecommendationsSection = () => {
 };
 
 // ====================================================================
-// SECTION 3: UPDATE TIMETABLE COMPONENT
+// SECTION 3: UPDATE TIMETABLE COMPONENT (Unchanged)
 // ====================================================================
 const UpdateTimetableSection = () => {
   return (
@@ -124,7 +127,190 @@ const UpdateTimetableSection = () => {
 };
 
 // ====================================================================
-// MAIN ADMIN PAGE COMPONENT
+// SECTION 4: MANAGE SCHEMES COMPONENT (New)
+// ====================================================================
+const SchemesSection = () => {
+    const schemes = [
+        { id: 'sch_001', name: 'PM Kisan Samman Nidhi', category: 'Agriculture' },
+        { id: 'sch_002', name: 'Ayushman Bharat', category: 'Healthcare' },
+        { id: 'sch_003', name: 'Skill India Mission', category: 'Employment' },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Add New Scheme</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="schemeName" className="block text-sm font-medium text-slate-300 mb-1">Scheme Name</label>
+                        <input type="text" id="schemeName" placeholder="e.g., Pradhan Mantri Awas Yojana" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <label htmlFor="schemeCategory" className="block text-sm font-medium text-slate-300 mb-1">Category</label>
+                        <input type="text" id="schemeCategory" placeholder="e.g., Housing" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                     <div>
+                        <label htmlFor="schemeDetails" className="block text-sm font-medium text-slate-300 mb-1">Description</label>
+                        <textarea id="schemeDetails" rows={4} placeholder="Describe the scheme and its benefits..." className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Add Scheme</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                 <h2 className="text-2xl font-bold mb-6 text-white">Existing Schemes</h2>
+                <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Scheme ID</th>
+                            <th className="p-4">Name</th>
+                            <th className="p-4">Category</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {schemes.map(scheme => (
+                            <tr key={scheme.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4 font-mono text-sm">{scheme.id}</td>
+                                <td className="p-4">{scheme.name}</td>
+                                <td className="p-4">{scheme.category}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-blue-400 hover:text-blue-300"><Edit size={18} /></button>
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+// ====================================================================
+// SECTION 5: MANAGE EXAMS COMPONENT (New)
+// ====================================================================
+const ExamsSection = () => {
+    const exams = [
+        { id: 'exm_001', name: 'UPSC Civil Services 2026', deadline: '2026-02-15', examDate: '2026-06-05' },
+        { id: 'exm_002', name: 'SSC CGL 2025', deadline: '2025-10-20', examDate: '2025-12-12' },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Add New Exam</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="examName" className="block text-sm font-medium text-slate-300 mb-1">Exam Name</label>
+                        <input type="text" id="examName" placeholder="e.g., IBPS PO 2025" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="appDeadline" className="block text-sm font-medium text-slate-300 mb-1">Application Deadline</label>
+                            <input type="date" id="appDeadline" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        </div>
+                        <div>
+                            <label htmlFor="examDate" className="block text-sm font-medium text-slate-300 mb-1">Exam Date</label>
+                            <input type="date" id="examDate" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Add Exam</button>
+                    </div>
+                </form>
+            </div>
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Upcoming Exams</h2>
+                <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Exam Name</th>
+                            <th className="p-4">Application Deadline</th>
+                            <th className="p-4">Exam Date</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {exams.map(exam => (
+                            <tr key={exam.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4">{exam.name}</td>
+                                <td className="p-4">{exam.deadline}</td>
+                                <td className="p-4">{exam.examDate}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-blue-400 hover:text-blue-300"><Edit size={18} /></button>
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+
+// ====================================================================
+// SECTION 6: MANAGE TAX UPDATES COMPONENT (New)
+// ====================================================================
+const TaxUpdatesSection = () => {
+    const updates = [
+        { id: 'tax_001', title: 'New GST Slabs for Electronics', effectiveDate: '2025-10-01' },
+        { id: 'tax_002', title: 'Income Tax Return Filing Deadline Extended', effectiveDate: '2025-08-31' },
+    ];
+    return (
+        <div className="space-y-8">
+            <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Add New Tax Update</h2>
+                <form className="space-y-6">
+                    <div>
+                        <label htmlFor="updateTitle" className="block text-sm font-medium text-slate-300 mb-1">Update Title</label>
+                        <input type="text" id="updateTitle" placeholder="A brief title for the update" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                     <div>
+                        <label htmlFor="updateDetails" className="block text-sm font-medium text-slate-300 mb-1">Details</label>
+                        <textarea id="updateDetails" rows={4} placeholder="Full details of the tax update..." className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                     <div>
+                        <label htmlFor="effectiveDate" className="block text-sm font-medium text-slate-300 mb-1">Effective Date</label>
+                        <input type="date" id="effectiveDate" className="w-full bg-slate-700 border border-slate-600 rounded-md p-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div className="text-right">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">Publish Update</button>
+                    </div>
+                </form>
+            </div>
+             <div className="bg-slate-800 rounded-lg p-6 animate-fade-in">
+                <h2 className="text-2xl font-bold mb-6 text-white">Recent Tax Updates</h2>
+                 <table className="w-full text-left text-slate-300">
+                    <thead className="bg-slate-700/50 text-slate-200">
+                        <tr>
+                            <th className="p-4 rounded-tl-lg">Title</th>
+                            <th className="p-4">Effective Date</th>
+                            <th className="p-4 rounded-tr-lg">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {updates.map(update => (
+                            <tr key={update.id} className="border-b border-slate-700 hover:bg-slate-700/40">
+                                <td className="p-4">{update.title}</td>
+                                <td className="p-4">{update.effectiveDate}</td>
+                                <td className="p-4 flex gap-4">
+                                    <button className="text-blue-400 hover:text-blue-300"><Edit size={18} /></button>
+                                    <button className="text-red-400 hover:text-red-300"><Trash2 size={18} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+
+// ====================================================================
+// MAIN ADMIN PAGE COMPONENT (Updated)
 // ====================================================================
 const AdminPage: NextPage = () => {
   const [activeSection, setActiveSection] = useState<AdminSection>('details');
@@ -137,6 +323,12 @@ const AdminPage: NextPage = () => {
         return <UserRecommendationsSection />;
       case 'timetable':
         return <UpdateTimetableSection />;
+      case 'schemes':
+        return <SchemesSection />;
+      case 'exams':
+        return <ExamsSection />;
+      case 'taxUpdates':
+        return <TaxUpdatesSection />;
       default:
         return <UserDetailsSection />;
     }
@@ -179,6 +371,25 @@ const AdminPage: NextPage = () => {
               className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'timetable' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
             >
               <Calendar size={20} /> Update Timetable
+            </button>
+            {/* --- New Buttons --- */}
+             <button
+              onClick={() => setActiveSection('schemes')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'schemes' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <Megaphone size={20} /> Manage Schemes
+            </button>
+             <button
+              onClick={() => setActiveSection('exams')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'exams' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <BookOpenCheck size={20} /> Manage Exams
+            </button>
+             <button
+              onClick={() => setActiveSection('taxUpdates')}
+              className={`flex items-center gap-3 w-full p-3 rounded-md text-left transition-colors ${activeSection === 'taxUpdates' ? 'bg-blue-600 text-white' : 'hover:bg-slate-700/50'}`}
+            >
+              <Landmark size={20} /> Tax Updates
             </button>
           </nav>
         </aside>
