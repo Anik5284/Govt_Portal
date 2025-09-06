@@ -28,7 +28,7 @@ export default function Page() {
     <main className="min-h-screen bg-gray-50 p-8 font-sans">
       <header className="max-w-6xl mx-auto mb-12 text-center">
         <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
-          18 Government Employment & Skill Schemes (India)
+          Government Employment & Skill Schemes (India)
         </h1>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
           Explore key initiatives aimed at job creation, skilling, and livelihood support across India.
