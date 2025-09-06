@@ -1,26 +1,27 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 const EMPLOYMENT_SCHEMES = [
-  { id: 1, title: "Atmanirbhar Bharat Rojgar Yojana (ABRY)", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 2, title: "Pradhan Mantri Rojgar Protsahan Yojana (PMRPY)", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 3, title: "National Career Service (NCS)", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 4, title: "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 5, title: "Pradhan Mantri Garib Kalyan Rojgar Abhiyaan (PMGKRA)", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 6, title: "Deen Dayal Antyodaya Yojana – NRLM", url: "https://dge.gov.in/dge/schemes_programmes?utm_source=chatgpt.com" },
-  { id: 7, title: "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)", url: "https://en.wikipedia.org/wiki/Pradhan_Mantri_Kaushal_Vikas_Yojana?utm_source=chatgpt.com" },
-  { id: 8, title: "National Apprenticeship Promotion Scheme (NAPS)", url: "https://clearias.com/employment-generation-schemes?utm_source=chatgpt.com" },
-  { id: 9, title: "Startup India & Stand-Up India", url: "https://clearias.com/employment-generation-schemes?utm_source=chatgpt.com" },
-  { id: 10, title: "Skill India Mission", url: "https://clearias.com/employment-generation-schemes?utm_source=chatgpt.com" },
-  { id: 11, title: "Prime Minister’s Employment Generation Programme (PMEGP)", url: "https://www.jansamarth.in/prime-minister-employment-generation-program-scheme?utm_source=chatgpt.com" },
-  { id: 12, title: "PM-SVANidhi", url: "https://eshram.gov.in/employment-schemes?utm_source=chatgpt.com" },
-  { id: 13, title: "Aajeevika – National Rural Livelihoods Mission (NRLM)", url: "https://clearias.com/employment-generation-schemes?utm_source=chatgpt.com" },
-  { id: 14, title: "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)", url: "https://eshram.gov.in/employment-schemes?utm_source=chatgpt.com" },
-  { id: 15, title: "Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)", url: "https://labour.gov.in/pm-sym?utm_source=chatgpt.com" },
-  { id: 16, title: "Deen Dayal Upadhyaya Antyodaya Yojana (DAY-NULM)", url: "https://en.wikipedia.org/wiki/Deen_Dayal_Upadhyaya_Antyodaya_Yojana?utm_source=chatgpt.com" },
-  { id: 17, title: "Atal Beemit Vyakti Kalyan Yojana (ABVKY)", url: "https://en.wikipedia.org/wiki/Atal_Beemit_Vyakti_Kalyan_Yojana?utm_source=chatgpt.com" },
-  { id: 18, title: "National Food for Work Programme (NFWP)", url: "https://en.wikipedia.org/wiki/National_Food_For_Work_Programme?utm_source=chatgpt.com" },
+  { id: 1, title: "Atmanirbhar Bharat Rojgar Yojana (ABRY)", url: "https://labour.gov.in/abry" },
+  { id: 2, title: "Pradhan Mantri Rojgar Protsahan Yojana (PMRPY)", url: "https://labour.gov.in/pmrpy" },
+  { id: 3, title: "National Career Service (NCS)", url: "https://www.ncs.gov.in/" },
+  { id: 4, title: "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)", url: "https://nrega.nic.in/" },
+  { id: 5, title: "Pradhan Mantri Garib Kalyan Rojgar Abhiyaan (PMGKRA)", url: "https://rural.nic.in/pmgkra" },
+  { id: 6, title: "Deen Dayal Antyodaya Yojana – NRLM", url: "https://aajeevika.gov.in/" },
+  { id: 7, title: "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)", url: "https://www.pmkvyofficial.org/" },
+  { id: 8, title: "National Apprenticeship Promotion Scheme (NAPS)", url: "https://www.apprenticeshipindia.gov.in/" },
+  { id: 9, title: "Startup India", url: "https://www.startupindia.gov.in/" },
+  { id: 10, title: "Skill India Mission", url: "https://skillindia.gov.in/" },
+  { id: 11, title: "Prime Minister’s Employment Generation Programme (PMEGP)", url: "https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp" },
+  { id: 12, title: "PM-SVANidhi", url: "https://pmsvanidhi.mohua.gov.in/" },
+  { id: 13, title: "Aajeevika – National Rural Livelihoods Mission (NRLM)", url: "https://aajeevika.gov.in/" },
+  { id: 14, title: "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)", url: "http://ddugky.gov.in/" },
+  { id: 15, title: "Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)", url: "https://labour.gov.in/pm-sym" },
+  { id: 16, title: "Deen Dayal Upadhyaya Antyodaya Yojana (DAY-NULM)", url: "https://nulm.gov.in/" },
+  { id: 17, title: "Atal Beemit Vyakti Kalyan Yojana (ABVKY)", url: "https://www.esic.gov.in/benefits/atal-beemit-vyakti-kalyan-yojana" },
+  { id: 18, title: "National Food for Work Programme (NFWP)", url: "https://rural.nic.in/nfwpscheme" },
 ];
 
 export default function Page() {
@@ -61,7 +62,7 @@ export default function Page() {
 
       <footer className="max-w-6xl mx-auto mt-16 text-center text-sm text-gray-500 border-t border-gray-200 pt-6">
         <p>
-          Note: Links point to official government portals, Wikipedia, or verified resources. This page is styled for clarity, readability, and professionalism.
+          Note: Links point to official government portals for accuracy and reliability. This page is styled for clarity, readability, and professionalism.
         </p>
       </footer>
     </main>
