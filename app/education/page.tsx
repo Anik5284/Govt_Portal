@@ -154,36 +154,53 @@ const SERVICES = [
     url: "https://exchanges.state.gov/non-us/alphabetical-list-programs?utm_source=chatgpt.com",
   },
 ];
-
 export default function Page() {
-  return (
-    <main className="min-h-screen bg-slate-50 p-6">
-      <header className="max-w-6xl mx-auto mb-8">
-        <h1 className="text-3xl font-semibold mb-2">25 Government Educational Services (India)</h1>
-        <p className="text-slate-600">Quick reference list with official or authoritative links — ready to drop into a Next.js + Tailwind app.</p>
-      </header>
+return (
+<main className="min-h-screen bg-gray-50 p-8 font-sans">
+<header className="max-w-6xl mx-auto mb-12 text-center">
+<h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
+25 Government Educational Services (India)
+</h1>
+<p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+A curated list with authoritative references to India’s educational services and schemes.
+</p>
+</header>
 
-      <section className="max-w-6xl mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((s) => (
-          <article key={s.id} className="rounded-2xl bg-white p-5 shadow-sm border">
-            <h2 className="text-lg font-medium">{s.title}</h2>
-            <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
 
-            <div className="mt-4 flex items-center justify-between">
-              <Link href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium">
-                Visit source
-                <ExternalLink className="w-4 h-4" />
-              </Link>
+<section className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+{SERVICES.map((s) => (
+<article
+key={s.id}
+className="rounded-xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-300 hover:-translate-y-1 transform"
+>
+<h2 className="text-lg font-semibold text-gray-900 mb-2">{s.title}</h2>
+<p className="text-sm text-gray-600 leading-relaxed mb-4">{s.desc}</p>
 
-              <span className="text-xs text-slate-400">#{s.id}</span>
-            </div>
-          </article>
-        ))}
-      </section>
 
-      <footer className="max-w-6xl mx-auto mt-10 text-sm text-slate-500">
-        <p>Notes: Links point to authoritative pages (government portals, Wikipedia & major repositories) used for quick reference. Customize the data array to swap in country-specific services or alternate sources.</p>
-      </footer>
-    </main>
-  );
+<div className="flex items-center justify-between">
+<Link
+href={s.url}
+target="_blank"
+rel="noopener noreferrer"
+className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+>
+Visit source
+<ExternalLink className="w-4 h-4" />
+</Link>
+
+
+<span className="text-xs text-gray-400 font-mono">#{s.id}</span>
+</div>
+</article>
+))}
+</section>
+
+
+<footer className="max-w-6xl mx-auto mt-16 text-center text-sm text-gray-500 border-t border-gray-200 pt-6">
+<p>
+Note: Links point to authoritative sources (government portals, Wikipedia, or research repositories). This page is styled for clarity, readability, and professionalism.
+</p>
+</footer>
+</main>
+);
 }
