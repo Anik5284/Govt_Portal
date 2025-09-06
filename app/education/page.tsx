@@ -162,7 +162,7 @@ export default function Page() {
     <main className="min-h-screen bg-gray-50 p-8 font-sans">
       <header className="max-w-6xl mx-auto mb-12 text-center">
         <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
-          25 Government Educational Services (India)
+            Government Educational Services (India)
         </h1>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
           A curated list with authoritative references to India’s educational services and schemes.
