@@ -54,9 +54,6 @@ export default function Navbar() {
             placeholder="Search"
             className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button className="bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-md font-medium shadow">
-            Login
-          </button>
         </div>
       </nav>
     </header>
