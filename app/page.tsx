@@ -22,8 +22,8 @@ const schemesData = [
 
 // Data for the Government Services section
 const servicesData = [
-  { title: "Education", description: "25 services available", Icon: GraduationCap, color: "green", link: "/app/education" },
-  { title: "Employment", description: "18 services available", Icon: Briefcase, color: "blue", link: "/employment" },
+  { title: "Education", description: "25 services available", Icon: GraduationCap, color: "green", link: "/education" },
+  { title: "Employment", description: "18 services available", Icon: Briefcase, color: "blue", link: "/employement" },
   { title: "Housing", description: "12 services available", Icon: Home, color: "orange", link: "/housing" },
   { title: "Healthcare", description: "15 services available", Icon: HeartPulse, color: "red", link: "/healthcare" },
   { title: "Security", description: "8 services available", Icon: Shield, color: "purple", link: "/security" },
@@ -94,9 +94,7 @@ const HomePage: NextPage = () => {
             <span className="text-2xl font-bold tracking-wider">PGIP</span>
           </div>
           <ul className="hidden md:flex items-center gap-8 text-gray-300">
-            <li>
-              <a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">Home</a>
-            </li>
+            <li><a href="#" className="text-white font-semibold border-b-2 border-blue-500 pb-1">Home</a></li>
             <li><a href="/myprofile" className="hover:text-white transition-colors">My Profile</a></li>
             <li><a href="/myrecommendations" className="hover:text-white transition-colors">My Recommendations</a></li>
             <li><a href="/timetable" className="hover:text-white transition-colors">Timetable</a></li>
@@ -138,10 +136,26 @@ const HomePage: NextPage = () => {
         {/* Statistics Row Section */}
         <section className="container mx-auto px-8 pt-4 pb-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="flex flex-col items-center"><div className="bg-blue-600/20 p-6 rounded-full"><Users className="w-12 h-12 text-blue-400" /></div><h3 className="text-4xl font-bold mt-4">1.2M+</h3><p className="text-gray-400 mt-1">Active Users</p></div>
-            <div className="flex flex-col items-center"><div className="bg-green-600/20 p-6 rounded-full"><Building className="w-12 h-12 text-green-400" /></div><h3 className="text-4xl font-bold mt-4">500+</h3><p className="text-gray-400 mt-1">Government Services</p></div>
-            <div className="flex flex-col items-center"><div className="bg-yellow-600/20 p-6 rounded-full"><TrendingUp className="w-12 h-12 text-yellow-400" /></div><h3 className="text-4xl font-bold mt-4">95%</h3><p className="text-gray-400 mt-1">Success Rate</p></div>
-            <div className="flex flex-col items-center"><div className="bg-purple-600/20 p-6 rounded-full"><Star className="w-12 h-12 text-purple-400" /></div><h3 className="text-4xl font-bold mt-4">4.8</h3><p className="text-gray-400 mt-1">Satisfaction Score</p></div>
+            <div className="flex flex-col items-center">
+              <div className="bg-blue-600/20 p-6 rounded-full"><Users className="w-12 h-12 text-blue-400" /></div>
+              <h3 className="text-4xl font-bold mt-4">1.2M+</h3>
+              <p className="text-gray-400 mt-1">Active Users</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-green-600/20 p-6 rounded-full"><Building className="w-12 h-12 text-green-400" /></div>
+              <h3 className="text-4xl font-bold mt-4">500+</h3>
+              <p className="text-gray-400 mt-1">Government Services</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-yellow-600/20 p-6 rounded-full"><TrendingUp className="w-12 h-12 text-yellow-400" /></div>
+              <h3 className="text-4xl font-bold mt-4">95%</h3>
+              <p className="text-gray-400 mt-1">Success Rate</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-purple-600/20 p-6 rounded-full"><Star className="w-12 h-12 text-purple-400" /></div>
+              <h3 className="text-4xl font-bold mt-4">4.8</h3>
+              <p className="text-gray-400 mt-1">Satisfaction Score</p>
+            </div>
           </div>
         </section>
       </div>
@@ -231,12 +245,102 @@ const HomePage: NextPage = () => {
         <section className="container mx-auto px-8 pb-20 pt-10">
           <h2 className="text-4xl font-bold text-center mb-12 text-white">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
-            <div className="bg-pink-500/10 border border-pink-500/20 rounded-xl p-8 backdrop-blur-sm"><UserCheck className="w-10 h-10 text-pink-400 mb-4" /><h3 className="text-2xl font-bold mb-3">Personalized Recommendations</h3><p className="text-gray-300">Receive tailored suggestions for schemes, services, and opportunities that match your profile.</p></div>
-            <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-8 backdrop-blur-sm"><Bell className="w-10 h-10 text-blue-400 mb-4" /><h3 className="text-2xl font-bold mb-3">Real-time Notifications</h3><p className="text-gray-300">Stay updated with instant notifications about new schemes, deadlines, and important announcements.</p></div>
-            <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-8 backdrop-blur-sm"><ClipboardCheck className="w-10 h-10 text-green-400 mb-4" /><h3 className="text-2xl font-bold mb-3">Easy Application Process</h3><p className="text-gray-300">Apply seamlessly to government schemes with step-by-step guidance and simplified forms.</p></div>
+            <div className="bg-pink-500/10 border border-pink-500/20 rounded-xl p-8 backdrop-blur-sm">
+              <UserCheck className="w-10 h-10 text-pink-400 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Personalized Recommendations</h3>
+              <p className="text-gray-300">Receive tailored suggestions for schemes, services, and opportunities that match your profile.</p>
+            </div>
+
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-8 backdrop-blur-sm">
+              <Bell className="w-10 h-10 text-blue-400 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Real-time Notifications</h3>
+              <p className="text-gray-300">Stay updated with instant notifications about new schemes, deadlines, and important announcements.</p>
+            </div>
+
+            <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-8 backdrop-blur-sm">
+              <ClipboardCheck className="w-10 h-10 text-green-400 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Easy Application Process</h3>
+              <p className="text-gray-300">Apply seamlessly to government schemes with step-by-step guidance and simplified forms.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Statistics Banner Section */}
+        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-12">
+          <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="flex flex-col items-center gap-2">
+              <ClipboardList className="w-12 h-12 text-white/80" />
+              <p className="text-5xl font-bold">120</p>
+              <p className="text-lg text-white/90">Schemes Covered</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <MapPin className="w-12 h-12 text-white/80" />
+              <p className="text-5xl font-bold">28</p>
+              <p className="text-lg text-white/90">States Supported</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <UsersIcon className="w-12 h-12 text-white/80" />
+              <p className="text-5xl font-bold">10,000</p>
+              <p className="text-lg text-white/90">Users Served</p>
+            </div>
           </div>
         </section>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300">
+        <div className="container mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Column 1: About */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold text-white">Personalized Government Info Portal</h3>
+            <p className="text-sm">Your one-stop destination for personalized government schemes, services, and information.</p>
+            <div className="flex gap-4 mt-2">
+              <a href="#" className="hover:text-white"><Facebook size={20} /></a>
+              <a href="#" className="hover:text-white"><Twitter size={20} /></a>
+              <a href="#" className="hover:text-white"><Linkedin size={20} /></a>
+              <a href="#" className="hover:text-white"><Instagram size={20} /></a>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
+              <li><a href="#" className="hover:text-white hover:underline">Services</a></li>
+              <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
+              <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
+              <li><a href="#" className="hover:text-white hover:underline">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Government Services */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Government Services</h3>
+            <ul className="space-y-3">
+              <li className="flex justify-between items-center"><span>Aadhaar Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+              <li className="flex justify-between items-center"><span>PAN Card</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+              <li className="flex justify-between items-center"><span>Passport Services</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+              <li className="flex justify-between items-center"><span>Driving License</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+              <li className="flex justify-between items-center"><span>Birth Certificate</span> <a href="#" className="text-xs border px-2 py-0.5 rounded hover:bg-white hover:text-black transition-colors">Explore</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Us */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3"><MapPin size={24} className="flex-shrink-0 mt-1" /><span>Government Complex, New Delhi, India</span></li>
+              <li className="flex items-center gap-3"><Phone size={18} /><span>+91 1800-XXX-XXXX</span></li>
+              <li className="flex items-center gap-3"><Mail size={18} /><span>info@pgip.gov.in</span></li>
+              <li className="flex items-center gap-3"><Clock size={18} /><span>Mon-Fri: 9:00 AM - 6:00 PM</span></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 py-4">
+          <p className="text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} PGIP. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
