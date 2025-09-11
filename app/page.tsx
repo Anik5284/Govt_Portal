@@ -1,5 +1,4 @@
 "use client";
-
 import type { NextPage } from "next";
 import Link from "next/link";
 import {
@@ -206,10 +205,7 @@ const HomePage: NextPage = () => {
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-2">{scheme.description}</p>
                 <p className="text-gray-600 dark:text-gray-400 mb-6"><strong className="text-slate-700 dark:text-slate-300">Eligibility:</strong> {scheme.eligibility}</p>
-                <div className="mt-auto flex items-center gap-4">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-md transition-colors">Learn More</button>
-                  <button className="border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 px-5 rounded-md transition-colors">Check Eligibility</button>
-                </div>
+                {/* Button block removed as requested */}
               </div>
             ))}
           </div>
