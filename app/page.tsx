@@ -102,11 +102,10 @@ const HomePage: NextPage = () => {
             <li><a href="/timetable" className="hover:text-white transition-colors">Timetable</a></li>
             <li><a href="/aboutus" className="hover:text-white transition-colors">About Us</a></li>
           </ul>
-          <div className="hidden md:flex items-center gap-4">
-            <div className="relative">
-              <input type="text" placeholder="Search" className="bg-[#1e2a47] border border-gray-600 rounded-md py-1.5 px-4 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-            </div>
+          <div className="hidden md:flex items-center">
+            <a href="/login" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors">
+              Login
+            </a>
           </div>
         </nav>
       </header>
@@ -219,7 +218,7 @@ const HomePage: NextPage = () => {
                       <span className="text-blue-600 dark:text-blue-400 font-semibold flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Learn More <ArrowRight size={16} />
                       </span>
-                   </div>
+                    </div>
                 </div>
               </a>
             ))}
