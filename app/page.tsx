@@ -16,7 +16,7 @@ const schemesData = [
   { title: "Ayushman Bharat", category: "Healthcare", priority: "High Priority", description: "Health insurance for poor families", eligibility: "Families below poverty line", link: "https://pmjay.gov.in/" },
   { title: "PM Fasal Bima Yojana", category: "Finance", priority: "Medium Priority", description: "Crop insurance scheme", eligibility: "All farmers", link: "https://pmfby.gov.in/" },
   { title: "Skill India Mission", category: "Employment", priority: "Medium Priority", description: "Skill development training", eligibility: "Youth aged 15-45 years", link: "https://www.skillindia.gov.in/" },
-  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children", link: "https://wcd.gov.in/" },
+  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children", link: "https://wcd.nic.in/bbbp-schemes" },
 ];
 
 // Data for the Government Services section
@@ -68,6 +68,9 @@ const HomePage: NextPage = () => {
   return (
     <div className="bg-[#112240] min-h-screen text-white font-sans">
       <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
         @keyframes fade-in-up {
           0% {
             opacity: 0;
@@ -122,7 +125,7 @@ const HomePage: NextPage = () => {
                 </button>
               </div>
               <div className="flex items-center gap-4 mt-4">
-                <button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">Explore Services</button>
+                <a href="/login" className="bg-blue-600 hover:bg-blue-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">Explore Services</a>
                 <button className="border-2 border-gray-500 hover:bg-gray-700 hover:border-gray-700 transition-colors text-white font-bold py-3 px-8 rounded-full text-lg">Learn More</button>
               </div>
             </div>
@@ -160,7 +163,7 @@ const HomePage: NextPage = () => {
       </div>
 
       {/* Government Services Section */}
-      <section className="bg-gradient-to-b from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800 py-20">
+      <section id="services" className="bg-gradient-to-b from-slate-50 to-slate-200 dark:from-slate-900 dark:to-slate-800 py-20 scroll-mt-24">
         <div className="container mx-auto px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Government Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -315,7 +318,7 @@ const HomePage: NextPage = () => {
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
-              <li><a href="#" className="hover:text-white hover:underline">Services</a></li>
+              <li><a href="#services" className="hover:text-white hover:underline">Services</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
               <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Contact</a></li>
