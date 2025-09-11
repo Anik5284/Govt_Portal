@@ -16,7 +16,7 @@ const schemesData = [
   { title: "Ayushman Bharat", category: "Healthcare", priority: "High Priority", description: "Health insurance for poor families", eligibility: "Families below poverty line", link: "https://pmjay.gov.in/" },
   { title: "PM Fasal Bima Yojana", category: "Finance", priority: "Medium Priority", description: "Crop insurance scheme", eligibility: "All farmers", link: "https://pmfby.gov.in/" },
   { title: "Skill India Mission", category: "Employment", priority: "Medium Priority", description: "Skill development training", eligibility: "Youth aged 15-45 years", link: "https://www.skillindia.gov.in/" },
-  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children", link: "https://wcd.gov.in/bbbp-schemes" },
+  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children", link: "https://wcd.gov.in/" },
 ];
 
 // Data for the Government Services section
