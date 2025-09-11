@@ -11,12 +11,12 @@ import {
 
 // Data for the schemes to avoid repeating JSX
 const schemesData = [
-  { title: "PM Kisan Samman Nidhi", category: "Finance", priority: "High Priority", description: "Direct income support to farmers", eligibility: "Small and marginal farmers" },
-  { title: "PM Awas Yojana", category: "Housing", priority: "High Priority", description: "Housing for all by 2022", eligibility: "Economically weaker sections" },
-  { title: "Ayushman Bharat", category: "Healthcare", priority: "High Priority", description: "Health insurance for poor families", eligibility: "Families below poverty line" },
-  { title: "PM Fasal Bima Yojana", category: "Finance", priority: "Medium Priority", description: "Crop insurance scheme", eligibility: "All farmers" },
-  { title: "Skill India Mission", category: "Employment", priority: "Medium Priority", description: "Skill development training", eligibility: "Youth aged 15-45 years" },
-  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children" },
+  { title: "PM Kisan Samman Nidhi", category: "Finance", priority: "High Priority", description: "Direct income support to farmers", eligibility: "Small and marginal farmers", link: "https://pmkisan.gov.in/" },
+  { title: "PM Awas Yojana", category: "Housing", priority: "High Priority", description: "Housing for all by 2022", eligibility: "Economically weaker sections", link: "https://pmaymis.gov.in/" },
+  { title: "Ayushman Bharat", category: "Healthcare", priority: "High Priority", description: "Health insurance for poor families", eligibility: "Families below poverty line", link: "https://pmjay.gov.in/" },
+  { title: "PM Fasal Bima Yojana", category: "Finance", priority: "Medium Priority", description: "Crop insurance scheme", eligibility: "All farmers", link: "https://pmfby.gov.in/" },
+  { title: "Skill India Mission", category: "Employment", priority: "Medium Priority", description: "Skill development training", eligibility: "Youth aged 15-45 years", link: "https://www.skillindia.gov.in/" },
+  { title: "Beti Bachao Beti Padhao", category: "Education", priority: "Medium Priority", description: "Girl child education and protection", eligibility: "Families with girl children", link: "https://wcd.gov.in/bbbp-schemes" },
 ];
 
 // Data for the Government Services section
@@ -194,19 +194,31 @@ const HomePage: NextPage = () => {
             <div className="mt-4 h-1 w-24 bg-blue-500 mx-auto rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {schemesData.map((scheme, index) => (
-              <div key={index} className="bg-white dark:bg-slate-800/50 rounded-lg p-6 shadow-lg border border-slate-200/50 dark:border-slate-700/50 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white pr-4">{scheme.title}</h3>
-                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.category)}`}>{scheme.category}</span>
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.priority)}`}>{scheme.priority}</span>
+            {schemesData.map((scheme) => (
+              <a
+                key={scheme.title}
+                href={scheme.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <div className="bg-white dark:bg-slate-800/50 rounded-lg p-6 shadow-lg border border-slate-200/50 dark:border-slate-700/50 flex flex-col h-full transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:border-blue-500/50 group-hover:-translate-y-2">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white pr-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{scheme.title}</h3>
+                    <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.category)}`}>{scheme.category}</span>
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${getTagColors(scheme.priority)}`}>{scheme.priority}</span>
+                    </div>
                   </div>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2 flex-grow">{scheme.description}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-4"><strong className="text-slate-700 dark:text-slate-300">Eligibility:</strong> {scheme.eligibility}</p>
+                   <div className="mt-auto pt-4 text-right">
+                      <span className="text-blue-600 dark:text-blue-400 font-semibold flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Learn More <ArrowRight size={16} />
+                      </span>
+                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-2">{scheme.description}</p>
-                <p className="text-gray-600 dark:text-gray-400 mb-6"><strong className="text-slate-700 dark:text-slate-300">Eligibility:</strong> {scheme.eligibility}</p>
-                {/* Button block removed as requested */}
-              </div>
+              </a>
             ))}
           </div>
         </div>
