@@ -16,6 +16,7 @@ import {
   RefreshCw,
   Save,
   UserCheck,
+  X, // Using the X icon for removing the file
 } from "lucide-react";
 
 // Import Navbar
@@ -23,6 +24,20 @@ import Navbar from "../components/Navbar";
 
 export default function MyProfilePage() {
   const [date, setDate] = React.useState<string>("");
+  const [resumeFile, setResumeFile] = React.useState<File | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  // Function to trigger the hidden file input when "Browse..." is clicked
+  const handleSelectFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  // Function to handle the file selection and update the state
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setResumeFile(event.target.files[0]);
+    }
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -79,7 +94,7 @@ export default function MyProfilePage() {
                     id="dob"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full outline-none"
+                    className="w-full outline-none bg-transparent"
                   />
                 </div>
               </div>
@@ -223,7 +238,7 @@ export default function MyProfilePage() {
                 >
                   <option value="">Select Year</option>
                   {Array.from({ length: 50 }, (_, i) => {
-                    const year = 1980 + i;
+                    const year = new Date().getFullYear() - i;
                     return (
                       <option key={year} value={year}>
                         {year}
@@ -311,6 +326,7 @@ export default function MyProfilePage() {
             </div>
 
             <div className="space-y-6">
+              {/* --- MODIFIED RESUME UPLOAD SECTION --- */}
               <div className="space-y-2">
                 <label
                   htmlFor="resume"
@@ -318,16 +334,51 @@ export default function MyProfilePage() {
                 >
                   Resume Upload
                 </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
-                  <input type="file" id="resume" className="hidden" />
-                  <p className="text-gray-500">
-                    Drag and drop your resume or{" "}
-                    <span className="text-blue-600 cursor-pointer">
-                      browse files
-                    </span>
-                  </p>
+                <div className="flex items-center space-x-2">
+                  <div className="relative flex-grow">
+                    {/* This input displays the file name but is read-only */}
+                    <input
+                      type="text"
+                      readOnly
+                      value={resumeFile ? resumeFile.name : ""}
+                      placeholder="No file selected..."
+                      className="w-full rounded-md border border-gray-300 p-2 bg-gray-50 cursor-default text-sm"
+                    />
+                    {/* Show remove button only when a file is selected */}
+                    {resumeFile && (
+                      <button
+                        type="button"
+                        onClick={() => setResumeFile(null)}
+                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-red-600"
+                        aria-label="Remove file"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    )}
+                  </div>
+                  {/* This input is hidden but is used to open the file dialog */}
+                  <input
+                    type="file"
+                    id="resume"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx"
+                    className="hidden"
+                  />
+                  {/* This button triggers the hidden file input */}
+                  <button
+                    type="button"
+                    onClick={handleSelectFileClick}
+                    className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  >
+                    Browse...
+                  </button>
                 </div>
+                 <p className="text-xs text-gray-400 mt-1">
+                    PDF, DOC, DOCX up to 5MB
+                  </p>
               </div>
+              {/* --- END OF MODIFIED SECTION --- */}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -374,7 +425,7 @@ export default function MyProfilePage() {
             </div>
           </section>
 
-          {/* --- Interests Selection --- */}
+          {/* --- Interests Selection & Actions --- */}
           <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center mb-4">
               <Heart className="h-6 w-6 text-blue-600 mr-3" />
@@ -383,37 +434,36 @@ export default function MyProfilePage() {
               </h2>
             </div>
             <p className="text-gray-500 mb-6">
-              Select your areas of interest to receive personalized
-              recommendations
+              Select areas of interest for personalized recommendations
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
                 <input type="checkbox" className="h-4 w-4 text-blue-600" />
-                <Briefcase className="h-5 w-5 text-blue-600" />
+                <Briefcase className="h-5 w-5 text-gray-600" />
                 <span className="font-medium text-gray-700">Jobs</span>
               </label>
 
               <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
                 <input type="checkbox" className="h-4 w-4 text-blue-600" />
-                <UserCheck className="h-5 w-5 text-blue-600" />
+                <UserCheck className="h-5 w-5 text-gray-600" />
                 <span className="font-medium text-gray-700">Internships</span>
               </label>
 
               <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
                 <input type="checkbox" className="h-4 w-4 text-blue-600" />
-                <ScholarshipIcon className="h-5 w-5 text-blue-600" />
+                <ScholarshipIcon className="h-5 w-5 text-gray-600" />
                 <span className="font-medium text-gray-700">Scholarships</span>
               </label>
 
               <label className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50">
                 <input type="checkbox" className="h-4 w-4 text-blue-600" />
-                <Landmark className="h-5 w-5 text-blue-600" />
+                <Landmark className="h-5 w-5 text-gray-600" />
                 <span className="font-medium text-gray-700">Schemes</span>
               </label>
             </div>
 
-            {/* Buttons */}
+            {/* --- Buttons --- */}
             <div className="flex space-x-4">
               <button className="flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-md shadow hover:bg-blue-700 w-full md:w-auto">
                 <Save className="h-5 w-5 mr-2" /> Save Changes
