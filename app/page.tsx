@@ -286,7 +286,7 @@ const HomePage: NextPage = () => {
           <div>
             <h3 className="text-base font-semibold text-orange-400 mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li><a href="/" className="hover:text-white hover:underline">My Profile </a></li>
+              <li><a href="/myprofile" className="hover:text-white hover:underline">My Profile </a></li>
               <li><a href="/myrecommendations" className="hover:text-white hover:underline">Services</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
               <li><a href="/aboutus" className="hover:text-white hover:underline">About Us</a></li>
