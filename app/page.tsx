@@ -296,7 +296,7 @@ const HomePage: NextPage = () => {
             <h3 className="text-base font-semibold text-sky-400 mb-4">Popular Services</h3>
             <ul className="space-y-3 text-sm text-slate-400">
               <li><a href="https://uidai.gov.in/en/my-aadhaar/avail-aadhaar-services.html" className="hover:text-white hover:underline">Aadhaar Services</a></li>
-              <li><a href="#" className="hover:text-white hover:underline">PAN Card</a></li>
+              <li><a href="https://onlineservices.proteantech.in/paam/endUserRegisterContact.html" className="hover:text-white hover:underline">PAN Card</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Passport Services</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Driving License</a></li>
             </ul>
