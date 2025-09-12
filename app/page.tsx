@@ -289,7 +289,7 @@ const HomePage: NextPage = () => {
               <li><a href="#" className="hover:text-white hover:underline">Home</a></li>
               <li><a href="#services" className="hover:text-white hover:underline">Services</a></li>
               <li><a href="#" className="hover:text-white hover:underline">Schemes</a></li>
-              <li><a href="#" className="hover:text-white hover:underline">About Us</a></li>
+              <li><a href="/aboutus" className="hover:text-white hover:underline">About Us</a></li>
             </ul>
           </div>
           <div>
