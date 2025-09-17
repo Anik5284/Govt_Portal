@@ -12,6 +12,8 @@ export default function OpportunitiesPage() {
   const [sort, setSort] = useState("Newest");
   const [filtered, setFiltered] = useState<any[]>([]);
 
+
+  
   const opportunities = [
     {
       id: 1,
