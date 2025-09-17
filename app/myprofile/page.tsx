@@ -16,7 +16,7 @@ import {
   RefreshCw,
   Save,
   UserCheck,
-  X, // Using the X icon for removing the file
+  X,
 } from "lucide-react";
 
 // Import Navbar
@@ -27,25 +27,26 @@ export default function MyProfilePage() {
   const [resumeFile, setResumeFile] = React.useState<File | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Function to trigger the hidden file input when "Browse..." is clicked
   const handleSelectFileClick = () => {
     fileInputRef.current?.click();
   };
 
-  // Function to handle the file selection and update the state
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setResumeFile(event.target.files[0]);
     }
   };
 
+  // Reusable card classes
+  const cardClass =
+    "bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200 " +
+    "hover:shadow-md hover:border-blue-300 transition-all duration-200";
+
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Navbar */}
       <Navbar />
 
       <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
-        {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800">My Profile</h1>
           <p className="text-gray-500 mt-1">
@@ -54,8 +55,8 @@ export default function MyProfilePage() {
         </div>
 
         <div className="space-y-8">
-          {/* --- Basic Details Card --- */}
-          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+          {/* --- Basic Details --- */}
+          <section className={cardClass}>
             <div className="flex items-center mb-6">
               <User className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
@@ -168,7 +169,7 @@ export default function MyProfilePage() {
           </section>
 
           {/* --- Academic Details --- */}
-          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+          <section className={cardClass}>
             <div className="flex items-center mb-6">
               <GraduationCap className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
@@ -265,7 +266,7 @@ export default function MyProfilePage() {
           </section>
 
           {/* --- Caste & Family Income --- */}
-          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+          <section className={cardClass}>
             <div className="flex items-center mb-6">
               <Users className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
@@ -317,7 +318,7 @@ export default function MyProfilePage() {
           </section>
 
           {/* --- Additional Details --- */}
-          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+          <section className={cardClass}>
             <div className="flex items-center mb-6">
               <FileText className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
@@ -326,7 +327,7 @@ export default function MyProfilePage() {
             </div>
 
             <div className="space-y-6">
-              {/* --- MODIFIED RESUME UPLOAD SECTION --- */}
+              {/* Resume Upload */}
               <div className="space-y-2">
                 <label
                   htmlFor="resume"
@@ -336,7 +337,6 @@ export default function MyProfilePage() {
                 </label>
                 <div className="flex items-center space-x-2">
                   <div className="relative flex-grow">
-                    {/* This input displays the file name but is read-only */}
                     <input
                       type="text"
                       readOnly
@@ -344,7 +344,6 @@ export default function MyProfilePage() {
                       placeholder="No file selected..."
                       className="w-full rounded-md border border-gray-300 p-2 bg-gray-50 cursor-default text-sm"
                     />
-                    {/* Show remove button only when a file is selected */}
                     {resumeFile && (
                       <button
                         type="button"
@@ -356,7 +355,6 @@ export default function MyProfilePage() {
                       </button>
                     )}
                   </div>
-                  {/* This input is hidden but is used to open the file dialog */}
                   <input
                     type="file"
                     id="resume"
@@ -365,7 +363,6 @@ export default function MyProfilePage() {
                     accept=".pdf,.doc,.docx"
                     className="hidden"
                   />
-                  {/* This button triggers the hidden file input */}
                   <button
                     type="button"
                     onClick={handleSelectFileClick}
@@ -374,11 +371,10 @@ export default function MyProfilePage() {
                     Browse...
                   </button>
                 </div>
-                 <p className="text-xs text-gray-400 mt-1">
-                    PDF, DOC, DOCX up to 5MB
-                  </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  PDF, DOC, DOCX up to 5MB
+                </p>
               </div>
-              {/* --- END OF MODIFIED SECTION --- */}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -426,7 +422,7 @@ export default function MyProfilePage() {
           </section>
 
           {/* --- Interests Selection & Actions --- */}
-          <section className="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-200">
+          <section className={cardClass}>
             <div className="flex items-center mb-4">
               <Heart className="h-6 w-6 text-blue-600 mr-3" />
               <h2 className="text-xl font-semibold text-gray-700">
@@ -463,7 +459,6 @@ export default function MyProfilePage() {
               </label>
             </div>
 
-            {/* --- Buttons --- */}
             <div className="flex space-x-4">
               <button className="flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-md shadow hover:bg-blue-700 w-full md:w-auto">
                 <Save className="h-5 w-5 mr-2" /> Save Changes
