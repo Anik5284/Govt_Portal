@@ -72,6 +72,8 @@ export default function OpportunitiesPage() {
   ];
 
   // ---------- Filter Logic ----------
+
+  
   const applyFilters = () => {
     let result = [...opportunities];
 
