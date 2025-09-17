@@ -13,7 +13,6 @@ export default function OpportunitiesPage() {
   const [filtered, setFiltered] = useState<any[]>([]);
 
 
-  
   const opportunities = [
     {
       id: 1,
