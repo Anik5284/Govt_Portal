@@ -26,6 +26,17 @@ export default function OpportunitiesPage() {
     },
     {
       id: 2,
+      title: "Data Science",
+      org: " Analytics",
+      location: "Remote",
+      date: "Jan 10, 2025",
+      type: "Job",
+      color: "bg-green-100 text-green-700",
+      description:
+        "6-month paid internship  & PPO",
+    },
+    {
+      id: 2,
       title: "Data Science Intern",
       org: "DataFlow Analytics",
       location: "Remote",
