@@ -1,14 +1,16 @@
-// app/opportunities/page.tsx
-
 "use client";
 
 import { useState } from "react";
 import { MapPin, Calendar } from "lucide-react";
-import Navbar from "../components/Navbar"; // ✅ import Navbar
+import Navbar from "../components/Navbar";
 
 export default function OpportunitiesPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Jobs");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [location, setLocation] = useState("All Locations");
+  const [qualification, setQualification] = useState("Any Qualification");
+  const [deadline, setDeadline] = useState("Any Time");
   const [sort, setSort] = useState("Newest");
+  const [filtered, setFiltered] = useState<any[]>([]);
 
   const opportunities = [
     {
@@ -20,7 +22,7 @@ export default function OpportunitiesPage() {
       type: "Job",
       color: "bg-blue-100 text-blue-700",
       description:
-        "Join our innovative team to build cutting-edge software solutions. We’re looking for experienced developers...",
+        "Join our innovative team to build cutting-edge software solutions...",
     },
     {
       id: 2,
@@ -31,7 +33,7 @@ export default function OpportunitiesPage() {
       type: "Internship",
       color: "bg-green-100 text-green-700",
       description:
-        "6-month paid internship working with real-world datasets and machine learning projects...",
+        "6-month paid internship working with real-world datasets...",
     },
     {
       id: 3,
@@ -57,12 +59,45 @@ export default function OpportunitiesPage() {
     },
   ];
 
+  // ---------- Filter Logic ----------
+  const applyFilters = () => {
+    let result = [...opportunities];
+
+    if (selectedCategories.length > 0) {
+      result = result.filter((o) =>
+        selectedCategories.some((c) =>
+          o.type.toLowerCase().includes(c.toLowerCase().slice(0, -1)) // match Jobs → Job
+        )
+      );
+    }
+
+    if (location !== "All Locations") {
+      result = result.filter((o) => o.location === location);
+    }
+
+    // (qualification and deadline filtering logic can be added similarly if your data has those fields)
+
+    if (sort === "Newest") {
+      result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    } else if (sort === "Oldest") {
+      result.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    }
+
+    setFiltered(result);
+  };
+
+  const toggleCategory = (cat: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+  };
+
+  const displayed = filtered.length > 0 ? filtered : opportunities;
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* ✅ Navbar at top */}
       <Navbar />
 
-      {/* Page Content */}
       <div className="flex flex-1">
         {/* Sidebar Filters */}
         <aside className="w-72 bg-white border-r p-6">
@@ -76,29 +111,21 @@ export default function OpportunitiesPage() {
             <h3 className="font-medium text-gray-700 mb-3">Categories</h3>
             <div className="space-y-3">
               {[
-                { name: "Jobs", count: 24 },
-                { name: "Internships", count: 12 },
-                { name: "Scholarships", count: 8 },
-                { name: "Schemes", count: 5 },
-                { name: "Exams", count: 6 },
-                { name: "Tax Updates", count: 4 },
-                { name: "Alerts", count: 3 },
+                "Jobs",
+                "Internships",
+                "Scholarships",
+                "Schemes",
+                "Exams",
+                "Tax Updates",
+                "Alerts",
               ].map((cat) => (
-                <label
-                  key={cat.name}
-                  className="flex items-center justify-between"
-                >
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedCategory === cat.name}
-                      onChange={() => setSelectedCategory(cat.name)}
-                    />
-                    <span className="text-gray-700">{cat.name}</span>
-                  </div>
-                  <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">
-                    {cat.count}
-                  </span>
+                <label key={cat} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedCategories.includes(cat)}
+                    onChange={() => toggleCategory(cat)}
+                  />
+                  <span className="text-gray-700">{cat}</span>
                 </label>
               ))}
             </div>
@@ -110,35 +137,23 @@ export default function OpportunitiesPage() {
 
             <label className="block mb-3">
               <span className="text-sm text-gray-600">Location</span>
-              <select className="mt-1 block w-full border rounded-md p-2 text-sm">
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="mt-1 block w-full border rounded-md p-2 text-sm"
+              >
                 <option>All Locations</option>
                 <option>San Francisco, CA</option>
                 <option>Remote</option>
                 <option>New York, NY</option>
               </select>
             </label>
-
-            <label className="block mb-3">
-              <span className="text-sm text-gray-600">Qualification</span>
-              <select className="mt-1 block w-full border rounded-md p-2 text-sm">
-                <option>Any Qualification</option>
-                <option>Bachelor’s</option>
-                <option>Master’s</option>
-                <option>PhD</option>
-              </select>
-            </label>
-
-            <label className="block mb-3">
-              <span className="text-sm text-gray-600">Deadline</span>
-              <select className="mt-1 block w-full border rounded-md p-2 text-sm">
-                <option>Any Time</option>
-                <option>This Month</option>
-                <option>Next 3 Months</option>
-              </select>
-            </label>
           </div>
 
-          <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+          <button
+            onClick={applyFilters}
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+          >
             Apply Filters
           </button>
         </aside>
@@ -161,7 +176,7 @@ export default function OpportunitiesPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {opportunities.map((opp) => (
+            {displayed.map((opp) => (
               <div
                 key={opp.id}
                 className="bg-white rounded-lg shadow-sm border p-5 flex flex-col"
