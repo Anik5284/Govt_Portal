@@ -12,7 +12,7 @@ export default function AuthPage() {
   const [showSignupPassword, setShowSignupPassword] = useState(false);
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800">
+    <div className="flex h-screen items-center justify-center bg-gradient-to-br from-purple-500 via-pink-500 to-red-500">
 
       {/* Login Popup */}
       {openLogin && (
@@ -160,7 +160,7 @@ export default function AuthPage() {
         </div>
       )}
 
-      {/* Forgot Password Popup remains unchanged */}
+      {/* Forgot Password Popup */}
       {openForgot && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
           <div className="rounded-3xl p-10 shadow-2xl bg-white w-full max-w-md">
