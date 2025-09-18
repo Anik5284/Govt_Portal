@@ -7,11 +7,8 @@ import Navbar from "../components/Navbar";
 export default function OpportunitiesPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [location, setLocation] = useState("All Locations");
-  const [qualification, setQualification] = useState("Any Qualification");
-  const [deadline, setDeadline] = useState("Any Time");
   const [sort, setSort] = useState("Newest");
   const [filtered, setFiltered] = useState<any[]>([]);
-
 
   const opportunities = [
     {
@@ -28,16 +25,15 @@ export default function OpportunitiesPage() {
     {
       id: 2,
       title: "Data Science",
-      org: " Analytics",
+      org: "Analytics",
       location: "Remote",
       date: "Jan 10, 2025",
       type: "Job",
       color: "bg-green-100 text-green-700",
-      description:
-        "6-month paid internship  & PPO",
+      description: "6-month paid internship  & PPO",
     },
     {
-      id: 2,
+      id: 3,
       title: "Data Science Intern",
       org: "DataFlow Analytics",
       location: "Remote",
@@ -48,7 +44,7 @@ export default function OpportunitiesPage() {
         "6-month paid internship working with real-world datasets...",
     },
     {
-      id: 3,
+      id: 4,
       title: "Merit Scholarship Program",
       org: "Global Education Foundation",
       location: "Worldwide",
@@ -59,7 +55,7 @@ export default function OpportunitiesPage() {
         "Full tuition scholarship for outstanding students pursuing STEM degrees...",
     },
     {
-      id: 4,
+      id: 5,
       title: "Startup Incubator Program",
       org: "Innovation Hub",
       location: "New York, NY",
@@ -72,15 +68,13 @@ export default function OpportunitiesPage() {
   ];
 
   // ---------- Filter Logic ----------
-
-  
   const applyFilters = () => {
     let result = [...opportunities];
 
     if (selectedCategories.length > 0) {
       result = result.filter((o) =>
-        selectedCategories.some((c) =>
-          o.type.toLowerCase().includes(c.toLowerCase().slice(0, -1)) // match Jobs → Job
+        selectedCategories.some(
+          (c) => o.type.toLowerCase() === c.toLowerCase().replace(/s$/, "")
         )
       );
     }
@@ -89,12 +83,14 @@ export default function OpportunitiesPage() {
       result = result.filter((o) => o.location === location);
     }
 
-    // (qualification and deadline filtering logic can be added similarly if your data has those fields)
-
     if (sort === "Newest") {
-      result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      result.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
     } else if (sort === "Oldest") {
-      result.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      result.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
     }
 
     setFiltered(result);
@@ -185,43 +181,46 @@ export default function OpportunitiesPage() {
             >
               <option value="Newest">Sort by: Newest</option>
               <option value="Oldest">Sort by: Oldest</option>
-              <option value="Deadline">Sort by: Deadline</option>
             </select>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {displayed.map((opp) => (
-              <div
-                key={opp.id}
-                className="bg-white rounded-lg shadow-sm border p-5 flex flex-col"
-              >
-                <span
-                  className={`text-xs font-medium px-2 py-0.5 rounded ${opp.color} w-fit mb-3`}
+          {displayed.length === 0 ? (
+            <p className="text-gray-500">No opportunities found.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              {displayed.map((opp) => (
+                <div
+                  key={opp.id}
+                  className="bg-white rounded-lg shadow-sm border p-5 flex flex-col"
                 >
-                  {opp.type}
-                </span>
-                <h3 className="font-semibold text-gray-800">{opp.title}</h3>
-                <p className="text-gray-600">{opp.org}</p>
+                  <span
+                    className={`text-xs font-medium px-2 py-0.5 rounded ${opp.color} w-fit mb-3`}
+                  >
+                    {opp.type}
+                  </span>
+                  <h3 className="font-semibold text-gray-800">{opp.title}</h3>
+                  <p className="text-gray-600">{opp.org}</p>
 
-                <div className="flex items-center text-sm text-gray-500 mt-2 space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <MapPin className="h-4 w-4" /> <span>{opp.location}</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <Calendar className="h-4 w-4" /> <span>{opp.date}</span>
-                  </span>
+                  <div className="flex items-center text-sm text-gray-500 mt-2 space-x-4">
+                    <span className="flex items-center space-x-1">
+                      <MapPin className="h-4 w-4" /> <span>{opp.location}</span>
+                    </span>
+                    <span className="flex items-center space-x-1">
+                      <Calendar className="h-4 w-4" /> <span>{opp.date}</span>
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-gray-600 mt-3 flex-1">
+                    {opp.description}
+                  </p>
+
+                  <button className="mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+                    View Details
+                  </button>
                 </div>
-
-                <p className="text-sm text-gray-600 mt-3 flex-1">
-                  {opp.description}
-                </p>
-
-                <button className="mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
-                  View Details
-                </button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </main>
       </div>
     </div>
