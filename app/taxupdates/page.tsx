@@ -1,7 +1,5 @@
 // app/tax-updates/page.tsx
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 interface TaxUpdate {
   title: string;
   description: string;
@@ -13,7 +11,7 @@ const updates: TaxUpdate[] = [
   {
     title: "New Income Tax Act, 2025 Enacted",
     description:
-      "The Income-Tax (No. 2) Bill, 2025 has been passed and received President’s assent. It replaces many provisions of the old law, simplifying language, removing obsolete sections, and introducing a unified “Tax Year” concept replacing the earlier “Assessment Year / Previous Year” terms.",
+      "The Income-Tax (No. 2) Bill, 2025 has been passed and received President’s assent. It replaces many provisions of the old law, simplifying language, removing obsolete sections, and introducing a unified “Tax Year” concept replacing the earlier terms.",
     date: "Aug 21, 2025",
     sourceUrl: "https://pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=155137"
   },
@@ -59,10 +57,13 @@ export default function TaxUpdatesPage() {
     <main className="p-6 space-y-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold">Latest Indian Government Tax Updates</h1>
       {updates.map((upd, idx) => (
-        <Card key={idx} className="shadow-lg rounded-lg border">
-          <CardHeader className="flex justify-between items-start">
+        <div
+          key={idx}
+          className="shadow-lg rounded-lg border border-gray-200 p-4 bg-white"
+        >
+          <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-lg font-semibold">{upd.title}</CardTitle>
+              <h2 className="text-lg font-semibold">{upd.title}</h2>
               <p className="text-sm text-gray-500 mt-1">{upd.date}</p>
             </div>
             <a
@@ -73,11 +74,9 @@ export default function TaxUpdatesPage() {
             >
               Source
             </a>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-700">{upd.description}</p>
-          </CardContent>
-        </Card>
+          </div>
+          <p className="text-sm text-gray-700 mt-2">{upd.description}</p>
+        </div>
       ))}
     </main>
   );
