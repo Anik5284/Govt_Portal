@@ -54,28 +54,31 @@ const updates: TaxUpdate[] = [
 
 export default function TaxUpdatesPage() {
   return (
-    <main className="p-6 space-y-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold">Latest Indian Government Tax Updates</h1>
+    <main className="p-8 space-y-6 max-w-5xl mx-auto bg-gray-50 min-h-screen">
+      <h1 className="text-3xl font-bold text-blue-900 border-b-4 border-blue-600 pb-2">
+        Latest Indian Government Tax Updates
+      </h1>
+
       {updates.map((upd, idx) => (
         <div
           key={idx}
-          className="shadow-lg rounded-lg border border-gray-200 p-4 bg-white"
+          className="shadow-md rounded-xl border border-gray-200 p-6 bg-white hover:shadow-lg transition"
         >
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="text-lg font-semibold">{upd.title}</h2>
+              <h2 className="text-xl font-semibold text-gray-800">{upd.title}</h2>
               <p className="text-sm text-gray-500 mt-1">{upd.date}</p>
             </div>
             <a
               href={upd.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2 py-1 border rounded text-xs text-gray-600 hover:bg-gray-100"
+              className="px-3 py-1 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
             >
               Source
             </a>
           </div>
-          <p className="text-sm text-gray-700 mt-2">{upd.description}</p>
+          <p className="text-gray-700 mt-3 leading-relaxed">{upd.description}</p>
         </div>
       ))}
     </main>
