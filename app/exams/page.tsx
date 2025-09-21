@@ -54,7 +54,7 @@ export default function Page() {
             <tbody>
               {upcoming.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="empty">No exams scheduled within the next two years.</td>
+                  <td colSpan={6} className="empty">Showing all exams scheduled</td>
                 </tr>
               ) : (
                 upcoming.map((x, idx) => (
