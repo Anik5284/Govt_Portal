@@ -80,7 +80,7 @@ export default function Page() {
 
   return (
     <main className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-xl font-semibold mb-4">Upcoming exams (next 2 years)</h2>
+      <h2 className="text-xl font-semibold mb-4">Upcoming Exams </h2>
       <div className="overflow-x-auto bg-white rounded shadow">
         <table className="min-w-full text-left">
           <thead className="border-b">
