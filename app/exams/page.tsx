@@ -29,7 +29,9 @@ export default function Page() {
   const twoYearsLater = new Date(now.getFullYear() + 2, now.getMonth(), now.getDate());
   const [exams] = useState<Exam[]>(SAMPLE_EXAMS);
 
-  const upcoming = useMemo(() => exams.filter(e => { const d = new Date(e.date); return d >= now && d <= twoYearsLater; }).sort((a,b)=>new Date(a.date).getTime()-new Date(b.date).getTime()), [exams, now, twoYearsLater]);
+  const upcoming = useMemo(() => exams
+    .filter(e => { const d = new Date(e.date); return d >= now && d <= twoYearsLater; })
+    .sort((a,b)=>new Date(a.date).getTime() - new Date(b.date).getTime()), [exams, now, twoYearsLater]);
 
   return (
     <main>
@@ -56,7 +58,7 @@ export default function Page() {
                 </tr>
               ) : (
                 upcoming.map((x, idx) => (
-                  <tr key={x.id} className={idx % 2 === 0 ? 'bg-even' : 'bg-odd'}>
+                  <tr key={x.id} className={idx % 4 === 0 ? 'row-color-1' : idx % 4 === 1 ? 'row-color-2' : idx % 4 === 2 ? 'row-color-3' : 'row-color-4'}>
                     <td className="titleCell">{x.title}</td>
                     <td>{x.subject ?? '-'}</td>
                     <td>{fmtDate(x.date)}</td>
@@ -74,40 +76,30 @@ export default function Page() {
       </div>
 
       <style jsx>{`
-        :root {
-          --bg: #f0f4f8;
-          --card: #ffffff;
-          --text: #1f2937;
-          --muted: #6b7280;
-          --accent-1: #3b82f6;
-          --accent-2: #6366f1;
-          --accent-3: #ec4899;
-          --accent-4: #f97316;
-          --border: #e5e7eb;
-          --radius: 12px;
-          --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-        }
-
-        main { background: var(--bg); min-height: 100vh; padding: 40px 20px; font-family: 'Inter', sans-serif; color: var(--text); }
+        main { background: #f0f4f8; min-height: 100vh; padding: 40px 20px; font-family: 'Inter', sans-serif; color: #1f2937; }
         .container { max-width: 1100px; margin: 0 auto; }
         h1 { font-size: 2.25rem; margin-bottom: 4px; }
-        .lead { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
-        .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
+        .lead { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+        .card { background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); overflow: hidden; }
         .table { width: 100%; border-collapse: collapse; }
-        .table thead th { text-align: left; padding: 14px; font-weight: 600; background: linear-gradient(to right, var(--accent-1), var(--accent-2)); color: #fff; }
-        .table tbody td { padding: 14px; border-bottom: 1px solid var(--border); }
-        .table tbody tr.bg-even { background-color: #f9fafb; }
-        .table tbody tr.bg-odd { background-color: #ffffff; }
-        .table tbody tr:hover { background-color: var(--accent-1); color: #fff; transition: 0.3s; }
+        .table thead th { text-align: left; padding: 14px; font-weight: 600; background: linear-gradient(to right, #3b82f6, #6366f1); color: #fff; }
+        .table tbody td { padding: 14px; border-bottom: 1px solid #e5e7eb; }
         .titleCell { font-weight: 600; }
-        .empty { text-align: center; padding: 28px; color: var(--muted); }
-        footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 32px; }
+
+        /* Colorful alternating rows without hover */
+        .row-color-1 { background-color: #fef3c7; } /* yellow */
+        .row-color-2 { background-color: #d1fae5; } /* green */
+        .row-color-3 { background-color: #fee2e2; } /* red */
+        .row-color-4 { background-color: #e0f2fe; } /* blue */
+
+        .empty { text-align: center; padding: 28px; color: #6b7280; }
+        footer { text-align: center; font-size: 13px; color: #6b7280; margin-top: 32px; }
 
         @media (max-width: 820px) {
           .table thead { display: none; }
           .table tbody td { display: block; width: 100%; padding-left: 50%; position: relative; }
-          .table tbody td::before { content: attr(data-label) ": "; position: absolute; left: 14px; font-weight: 600; }
-          .table tbody tr { margin-bottom: 16px; display: block; border-radius: var(--radius); overflow: hidden; }
+          .table tbody td::before { content: attr(data-label) \": \"; position: absolute; left: 14px; font-weight: 600; }
+          .table tbody tr { margin-bottom: 16px; display: block; border-radius: 12px; overflow: hidden; }
         }
       `}</style>
     </main>
