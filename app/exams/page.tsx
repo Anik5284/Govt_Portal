@@ -37,7 +37,7 @@ export default function Page() {
     <main>
       <div className="container">
         <h1>Upcoming Exams</h1>
-        <p className="lead">Showing all exams scheduled within the next two years.</p>
+        <p className="lead">Showing all exams scheduled.</p>
 
         <div className="card">
           <table className="table">
